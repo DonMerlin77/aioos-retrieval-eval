@@ -1,0 +1,75 @@
+Traceback (most recent call last):
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 462, in _make_request
+    httplib_response = conn.getresponse()
+                       ^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/http/client.py", line 1423, in getresponse
+    response.begin()
+  File "/home/t_sem77/miniconda3/lib/python3.12/http/client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/http/client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 799, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/util/retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/packages/six.py", line 770, in reraise
+    raise value
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 715, in urlopen
+    httplib_response = self._make_request(
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 469, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/urllib3/connectionpool.py", line 358, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=60)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/t_sem77/aioos_retrieval_eval/audit_labels.py", line 104, in <module>
+    main()
+  File "/home/t_sem77/aioos_retrieval_eval/audit_labels.py", line 78, in main
+    jg, reason = judge(q["text"], mem[mid])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/aioos_retrieval_eval/audit_labels.py", line 51, in judge
+    r = requests.post(URL, headers={"Authorization": f"Bearer {API_KEY}"}, json=body, timeout=60)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/t_sem77/miniconda3/lib/python3.12/site-packages/requests/adapters.py", line 690, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='openrouter.ai', port=443): Read timed out. (read timeout=60)

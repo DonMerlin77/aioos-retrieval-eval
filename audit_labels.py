@@ -39,7 +39,7 @@ RUBRIC = (
 )
 
 
-def judge(situation, memory_text):
+def judge(situation, memory_text, retries=4):
     body = {
         "model": AUDIT_MODEL,
         "temperature": 0,
@@ -48,24 +48,33 @@ def judge(situation, memory_text):
             {"role": "user", "content": f"SITUATION: {situation}\nMEMORY: {memory_text}\n\nGrade this memory."},
         ],
     }
-    r = requests.post(URL, headers={"Authorization": f"Bearer {API_KEY}"}, json=body, timeout=60)
-    r.raise_for_status()
-    txt = r.json()["choices"][0]["message"]["content"].strip()
-    m = re.search(r"GRADE\s*=\s*([012])", txt)
-    grade = int(m.group(1)) if m else None
-    reason = txt.split("|", 1)[1].strip() if "|" in txt else txt
-    return grade, reason
+    last = None
+    for attempt in range(retries):
+        try:
+            r = requests.post(URL, headers={"Authorization": f"Bearer {API_KEY}"}, json=body, timeout=90)
+            r.raise_for_status()
+            txt = r.json()["choices"][0]["message"]["content"].strip()
+            m = re.search(r"GRADE\s*=\s*([012])", txt)
+            grade = int(m.group(1)) if m else None
+            reason = txt.split("|", 1)[1].strip() if "|" in txt else txt
+            return grade, reason
+        except Exception as e:  # a flaky network/API call must not abort the whole batch
+            last = e
+            time.sleep(2 * (attempt + 1))
+    return None, f"REQUEST FAILED after {retries} tries: {last}"
 
 
 def main():
     full = "--full" in sys.argv
+    only = {a for a in sys.argv[1:] if re.fullmatch(r"q\d+", a)}  # audit only these query ids if given
     if not API_KEY:
         sys.exit("OPENROUTER_API_KEY not found in ~/shopify_store/.env")
     d = json.load(open(HERE / "memories.json"))
     mem = {m["id"]: m["text"] for m in d["memories"]}
+    queries = [q for q in d["queries"] if not only or q["id"] in only]
     flags, checked = [], 0
 
-    for q in d["queries"]:
+    for q in queries:
         draft = {mid: lab["grade"] for mid, lab in q["labels"].items()}
         candidates = dict(draft)
         if q.get("hard_negative"):

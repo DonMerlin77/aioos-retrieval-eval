@@ -43,6 +43,16 @@ cd ~/aioos_retrieval_eval && python eval.py
 - audit trail: `audit_flags.json`. This IS the committed stand-in baseline; safe to compare 1.5.0 against.
 - next lever for a tighter CI / stronger claim: grow queries toward ~40 (re-audit each addition the same way).
 
+### Run 1c — STAND-IN, WIDENED set (2026-09-16) — ADJUDICATED (current committed baseline)
+- **embedder:** `sentence-transformers/all-MiniLM-L6-v2`
+- **set:** 60 memories, 55 queries (easy/medium/hard tiers), hard queries carry a hard_negative
+- **nDCG@3 = 0.53**  95% CI [0.43, 0.64]  ← DECIDING. CI half-width tightened from ±0.14 (n=30) to ±0.10.
+- recall@3 = 0.53 [0.43, 0.64] · hit@3 = 0.73 [0.60, 0.84] · MRR = 0.63 [0.53, 0.73]
+- positive control PASS · shuffle control nDCG@3 = 0.09 (collapses) · hard-negative leakage 8/53
+- labels ADJUDICATED (drafted → independent-judge audit `audit_labels.py` → Tom ruled). See memories.json `_status`.
+- **THIS is the current committed stand-in baseline; compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.**
+- (Run 1b n=30 nDCG@3=0.47 was the intermediate stage before widening; kept above for the history.)
+
 ### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
 - run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)
 - read to report to Dan: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in

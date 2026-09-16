@@ -1,6 +1,6 @@
 {
   "_note": "AIOOS NPC memory-retrieval eval. An NPC (a tavern keeper) has memories. Each query is a situation; 'labels' names the memory ids that SHOULD be recalled, each with a relevance GRADE and a written rationale. 'hard_negative' names a topically-close memory that should NOT be retrieved (a control against topic-matching). Ground truth is hand-labeled.",
-  "_status": "ADJUDICATED 2026-09-16. Labels drafted by assistant, audited by an independent judge (audit_labels.py), disagreements ruled on by Tom (ground truth of record). Adjudicated changes: q9/m33 1->2, q11/m29 dropped to 0, q13/m7 0->1, q16/m10 0->1 (q16 hard_negative reassigned m10->m19), q21/m38 0->1. q13 and q21 are now trap-free (their former hard negatives became labels). Seven judge-flagged hard negatives kept at 0 as clean category errors.",
+  "_status": "ADJUDICATED 2026-09-16 at n=55 (60 memories, 55 queries). Labels drafted by assistant, audited by an independent judge (audit_labels.py, llama-3.3-70b), disagreements ruled on by Tom (ground truth of record). n<=30 changes: q9/m33 1->2, q11/m29->0, q13/m7 0->1, q16/m10 0->1 (hn m10->m19), q21/m38 0->1. n31-55 changes: q44/m5 1->2, q54/m2 1->2 (co-primaries allowed where two answers are equally direct); all judge-flagged hard negatives kept at 0 (clean category errors); judge downgrades of clear primaries overridden per the consistent judge-leniency pattern.",
   "_label_schema": {
     "what_is_evaluated": "Given a situation the NPC is in, does the embedder retrieve the memories a thoughtful NPC would actually draw on to respond? APPLICATION target (right memory for a game moment), not academic IR. Deliberately distinct from Dan's K1 gate (nDCG on BEIR).",
     "grades": {
@@ -54,7 +54,27 @@
     {"id": "m37", "text": "My best cook burned her hand badly and cannot work the hearth for a while.", "theme": "regulars"},
     {"id": "m38", "text": "A gambler left a fine dagger as collateral against a debt he has not repaid.", "theme": "money"},
     {"id": "m39", "text": "The chapel bell has been ringing at odd hours and no one knows who is ringing it.", "theme": "outside_news"},
-    {"id": "m40", "text": "A merchant warned that spiced wine spoils fast once a crate is opened in the heat.", "theme": "money"}
+    {"id": "m40", "text": "A merchant warned that spiced wine spoils fast once a crate is opened in the heat.", "theme": "money"},
+    {"id": "m41", "text": "The miller's son is nervous and jumpy about his wedding feast next month.", "theme": "regulars"},
+    {"id": "m42", "text": "Bram, a retired soldier, holds court by the fire most nights telling old war stories.", "theme": "regulars"},
+    {"id": "m43", "text": "The rival tavern across town has been undercutting my prices to steal my regulars.", "theme": "money"},
+    {"id": "m44", "text": "Two young lovers from feuding families keep meeting in secret in my back room.", "theme": "romance"},
+    {"id": "m45", "text": "The widow Hana quietly asked me whether the old widower ever mentions her.", "theme": "romance"},
+    {"id": "m46", "text": "A spice caravan carrying rare pepper is due in town in about a fortnight.", "theme": "trade"},
+    {"id": "m47", "text": "Counterfeit coins have been passing through town; two turned up in my till this week.", "theme": "money"},
+    {"id": "m48", "text": "A wanted poster for a horse thief was nailed up in the square yesterday.", "theme": "threats"},
+    {"id": "m49", "text": "The night watch was cut to a single man after the town's coffers ran short.", "theme": "threats"},
+    {"id": "m50", "text": "An early frost is expected within the week and may ruin the late crops.", "theme": "weather"},
+    {"id": "m51", "text": "The river is running dangerously high and could flood the low south road.", "theme": "weather"},
+    {"id": "m52", "text": "A traveling tooth-puller has set up a stall near the market for a few days.", "theme": "sickness"},
+    {"id": "m53", "text": "By order of the baron, a new toll is now charged at the west gate.", "theme": "crown"},
+    {"id": "m54", "text": "A merchant ship carrying the region's salt supply sank off the coast.", "theme": "trade"},
+    {"id": "m55", "text": "The neighboring lord died and his young heir is untested and unproven.", "theme": "outside_news"},
+    {"id": "m56", "text": "Travelers keep saying my ale is the best between here and the capital.", "theme": "reputation"},
+    {"id": "m57", "text": "A traveling gourmand is going tavern to tavern quietly judging the food and drink.", "theme": "reputation"},
+    {"id": "m58", "text": "I know the sheriff drinks on duty, but I have kept it to myself.", "theme": "secrets"},
+    {"id": "m59", "text": "A regular confessed he cannot read and begged me to keep it quiet.", "theme": "secrets"},
+    {"id": "m60", "text": "A stray dog has started guarding my tavern door every night.", "theme": "regulars"}
   ],
   "queries": [
     {"id": "q1", "text": "A traveler asks me the safest route to take when leaving town to the north.", "difficulty": "hard",
@@ -194,7 +214,122 @@
     {"id": "q30", "text": "Have any officials or authorities taken an interest in the town lately?", "difficulty": "medium",
      "labels": {"m16": {"grade": 2, "why": "A tax collector from the capital coming to town is direct official interest."},
                 "m32": {"grade": 1, "why": "Soldiers massing at the border is authority activity affecting the area."}},
-     "hard_negative": "m3", "hard_negative_why": "m3 involves town guards but an internal wage dispute, not outside authority taking interest."}
+     "hard_negative": "m3", "hard_negative_why": "m3 involves town guards but an internal wage dispute, not outside authority taking interest."},
+
+    {"id": "q31", "text": "A patron asks who around here is worth listening to for old war stories.", "difficulty": "easy",
+     "labels": {"m42": {"grade": 2, "why": "Bram the retired soldier telling war stories by the fire is exactly who to point to."}},
+     "hard_negative": "m18", "hard_negative_why": "m18 is a soldier too, but a drunk spreading a rumor, not a storyteller worth seeking out."},
+
+    {"id": "q32", "text": "A traveler asks whether it is safe to carry coin openly in town right now.", "difficulty": "medium",
+     "labels": {"m47": {"grade": 2, "why": "Counterfeit coins circulating is a direct risk to anyone handling money here."},
+                "m48": {"grade": 1, "why": "A wanted horse thief about means theft risk worth flagging."}},
+     "hard_negative": "m29", "hard_negative_why": "m29 is about money (a big tab paid in silver) but good news, not a danger to carrying coin."},
+
+    {"id": "q33", "text": "A gossip asks whether there are any secret romances in town.", "difficulty": "medium",
+     "labels": {"m44": {"grade": 2, "why": "Two young lovers from feuding families meeting in secret is a direct secret romance."},
+                "m45": {"grade": 1, "why": "The widow Hana's quiet interest in the widower is a budding romance worth a hint."}},
+     "hard_negative": "m30", "hard_negative_why": "m30 (Elsa quit) is a person with an unspoken reason, but not a romance."},
+
+    {"id": "q34", "text": "A cook asks where they can buy rare spices in the near future.", "difficulty": "easy",
+     "labels": {"m46": {"grade": 2, "why": "A spice caravan with rare pepper due in a fortnight is the direct answer to buying spices soon."}},
+     "hard_negative": "m4", "hard_negative_why": "m4 is spiced wine, spice-flavored but a drink to sell, not spices to buy."},
+
+    {"id": "q35", "text": "A guest worries about flooding on the low road heading south.", "difficulty": "hard",
+     "labels": {"m51": {"grade": 2, "why": "The river running high and threatening to flood the low south road is the direct answer."}},
+     "hard_negative": "m13", "hard_negative_why": "m13 is a blocked road (rockslide) but to the west and a different hazard, not the southern flood."},
+
+    {"id": "q36", "text": "The baron's man asks whether the new tolls and taxes are known and paid.", "difficulty": "medium",
+     "labels": {"m53": {"grade": 2, "why": "The baron's new west-gate toll is the direct toll in question."},
+                "m16": {"grade": 1, "why": "A tax collector from the capital coming is related tax activity worth mentioning."}},
+     "hard_negative": "m35", "hard_negative_why": "m35 is a law (the curfew) but not a toll or tax."},
+
+    {"id": "q37", "text": "A farmer asks whether the coming weather will threaten his crops.", "difficulty": "easy",
+     "labels": {"m50": {"grade": 2, "why": "An early frost expected to ruin the late crops is the direct weather threat."}},
+     "hard_negative": "m34", "hard_negative_why": "m34 is crop failure, but in towns to the west and already past, not this farmer's coming weather."},
+
+    {"id": "q38", "text": "A merchant asks how the region's salt trade is holding up.", "difficulty": "medium",
+     "labels": {"m54": {"grade": 2, "why": "A ship carrying the region's salt supply sinking directly answers the state of the salt trade."}},
+     "hard_negative": "m46", "hard_negative_why": "m46 is a trade caravan, but for spices, not salt."},
+
+    {"id": "q39", "text": "A newcomer asks whether the town watch can be relied on for protection.", "difficulty": "medium",
+     "labels": {"m49": {"grade": 2, "why": "The night watch cut to a single man directly answers whether protection can be relied on."},
+                "m48": {"grade": 1, "why": "A wanted thief about is the kind of threat the watch would handle, relevant context."}},
+     "hard_negative": "m3", "hard_negative_why": "m3 is guards arguing over wages, an internal dispute, not the watch's protective capacity."},
+
+    {"id": "q40", "text": "A trusted friend asks whether I keep any secrets about people in town.", "difficulty": "hard",
+     "labels": {"m58": {"grade": 2, "why": "Knowing the sheriff drinks on duty and staying silent is a kept secret about a townsperson."},
+                "m59": {"grade": 2, "why": "A regular's confession that he cannot read, kept quiet, is a kept secret about a townsperson."}},
+     "hard_negative": "m17", "hard_negative_why": "m17 is a sealed letter, secret-ish, but an object left behind, not a townsperson's secret I hold."},
+
+    {"id": "q41", "text": "A visiting gourmet asks about the tavern's reputation for food and drink.", "difficulty": "medium",
+     "labels": {"m56": {"grade": 2, "why": "Travelers calling my ale the best between here and the capital is the reputation directly."},
+                "m57": {"grade": 1, "why": "A gourmand judging taverns bears on reputation and is worth knowing."}},
+     "hard_negative": "m40", "hard_negative_why": "m40 is about wine spoiling in heat, a storage warning, not reputation."},
+
+    {"id": "q42", "text": "Is anyone new watching or judging my tavern that I should try to impress?", "difficulty": "medium",
+     "labels": {"m57": {"grade": 2, "why": "A gourmand quietly judging taverns is exactly someone to impress."},
+                "m16": {"grade": 1, "why": "A tax collector coming is an official to mind, if not to impress."}},
+     "hard_negative": "m1", "hard_negative_why": "m1 is a mysterious stranger, a watcher of sorts, but not judging the tavern."},
+
+    {"id": "q43", "text": "A guest asks whether any animals hang around the tavern.", "difficulty": "easy",
+     "labels": {"m60": {"grade": 2, "why": "A stray dog guarding the door nightly is an animal around the tavern."},
+                "m6": {"grade": 1, "why": "The gray cat by the hearth is another resident animal."}},
+     "hard_negative": "m25", "hard_negative_why": "m25 is animals (wolves) but a distant danger to livestock, not around the tavern."},
+
+    {"id": "q44", "text": "A patron asks about upcoming weddings or celebrations worth attending.", "difficulty": "medium",
+     "labels": {"m22": {"grade": 2, "why": "The booked wedding feast is a direct upcoming celebration."},
+                "m5": {"grade": 2, "why": "The harvest festival in three days is a direct, imminent celebration to attend, co-primary with the wedding (Tom, 2026-09-16)."}},
+     "hard_negative": "m39", "hard_negative_why": "m39 (odd chapel bells) is an event of sorts but ominous and unexplained, not a celebration."},
+
+    {"id": "q45", "text": "A nervous groom asks me for reassurance before his big day.", "difficulty": "hard",
+     "labels": {"m41": {"grade": 2, "why": "The miller's son being jumpy about his wedding is exactly this nervous groom."}},
+     "hard_negative": "m5", "hard_negative_why": "m5 is a big day (the festival) but a public one, not his wedding."},
+
+    {"id": "q46", "text": "A kindly traveler asks if anyone local quietly needs help but will not ask for it.", "difficulty": "medium",
+     "labels": {"m59": {"grade": 2, "why": "A man who cannot read and kept it hidden is someone quietly needing help."},
+                "m31": {"grade": 1, "why": "The lonely widower nursing one cup is quietly in need of company."}},
+     "hard_negative": "m30", "hard_negative_why": "m30 (Elsa quit) left with an unspoken reason but is gone, not someone here needing help."},
+
+    {"id": "q47", "text": "A guard asks whether there are any wanted criminals around town.", "difficulty": "easy",
+     "labels": {"m48": {"grade": 2, "why": "A wanted poster for a horse thief directly answers whether wanted criminals are about."}},
+     "hard_negative": "m27", "hard_negative_why": "m27 is a crime (attempted lock-picking) but no wanted person, so not who the guard is asking about."},
+
+    {"id": "q48", "text": "A traveler asks whether the roads have new fees or checkpoints.", "difficulty": "medium",
+     "labels": {"m53": {"grade": 2, "why": "The baron's new west-gate toll is a direct new road fee."}},
+     "hard_negative": "m15", "hard_negative_why": "m15 is an east-road danger (bandits), a road matter but not a fee or checkpoint."},
+
+    {"id": "q49", "text": "A worried guest asks whether the town's food and water are safe to consume now.", "difficulty": "hard",
+     "labels": {"m10": {"grade": 2, "why": "The well water making people sick is a direct current threat to safe water."},
+                "m21": {"grade": 1, "why": "Rats in the grain store is a current food-contamination risk."}},
+     "hard_negative": "m52", "hard_negative_why": "m52 (a tooth-puller) is health-adjacent but dental care, not food or water safety."},
+
+    {"id": "q50", "text": "A merchant asks whether counterfeit money is a risk when trading here.", "difficulty": "medium",
+     "labels": {"m47": {"grade": 2, "why": "Counterfeit coins passing through town is the direct answer to counterfeit-money risk."},
+                "m1": {"grade": 1, "why": "A stranger paying with a notable royal-seal coin is weakly relevant to coin authenticity."}},
+     "hard_negative": "m29", "hard_negative_why": "m29 is a large tab paid in silver, genuine money, not a counterfeit risk."},
+
+    {"id": "q51", "text": "A patron with a toothache asks whether a tooth-puller is around.", "difficulty": "easy",
+     "labels": {"m52": {"grade": 2, "why": "A traveling tooth-puller set up near the market is the direct answer."}},
+     "hard_negative": "m20", "hard_negative_why": "m20 is a healer with fever tonic, medical but not dental care."},
+
+    {"id": "q52", "text": "A lord's envoy asks about the stability of the neighboring lands.", "difficulty": "medium",
+     "labels": {"m55": {"grade": 2, "why": "A neighboring lord's death leaving an untested heir directly bears on neighboring stability."},
+                "m32": {"grade": 1, "why": "Soldiers massing at the border is instability affecting the region."}},
+     "hard_negative": "m11", "hard_negative_why": "m11 (refugees from a burned village) is neighboring trouble but a past, specific event, not the lands' current stability."},
+
+    {"id": "q53", "text": "A guest asks whether my rival tavern across town is worth visiting instead.", "difficulty": "hard",
+     "labels": {"m43": {"grade": 2, "why": "The rival tavern undercutting my prices is directly about that rival."}},
+     "hard_negative": "m56", "hard_negative_why": "m56 is about MY tavern's reputation, not the rival's worth."},
+
+    {"id": "q54", "text": "Someone asks what dangers travelers have reported on the roads lately.", "difficulty": "medium",
+     "labels": {"m15": {"grade": 2, "why": "Bandits on the east road at dusk is a direct reported road danger."},
+                "m2": {"grade": 2, "why": "A washed-out bridge is as direct a road danger as the bandits, co-primary (Tom, 2026-09-16)."}},
+     "hard_negative": "m36", "hard_negative_why": "m36 (a peddler swearing the north road is safe) is road talk that contradicts the hazard, a tempting wrong grab."},
+
+    {"id": "q55", "text": "A festival organizer asks whether we have enough drink and supplies for the crowd.", "difficulty": "medium",
+     "labels": {"m5": {"grade": 2, "why": "The mayor's request to brew extra ale for the festival is directly about festival supply."},
+                "m12": {"grade": 1, "why": "Rising grain prices pressure the ability to stock up, a supply concern."}},
+     "hard_negative": "m46", "hard_negative_why": "m46 is an incoming supply caravan, but rare spices, not festival drink and staples."}
   ],
   "positive_control": {"text": "Has a gray cat been sleeping by the fireplace this week?", "must_retrieve": "m6"}
 }
