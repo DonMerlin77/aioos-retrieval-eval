@@ -1,0 +1,31 @@
+{
+  "_note": "Hardened voice-routing eval. Ground truth is assigned by an LLM PANEL at runtime (independent of both routers and of my judgment). The first 10 keep a 'hand' field only to cross-check that my earlier labels agreed with the panel; scoring uses the panel labels.",
+  "K": 5,
+  "situations": [
+    {"text": "A merchant offers me a deal that seems far too generous to be real. Should I take it?", "hand": ["paranoid", "frugal"]},
+    {"text": "My closest friend just lost their mother and I have no idea what to say to comfort them.", "hand": ["empath"]},
+    {"text": "The entire town council agrees we should raise taxes, but I have a nagging doubt about it.", "hand": ["contrarian", "paranoid"]},
+    {"text": "I have almost no money left and I need to decide what to cut to survive the winter.", "hand": ["frugal"]},
+    {"text": "Should I pour everything I have into this one huge opportunity that could change my whole life?", "hand": ["visionary", "paranoid", "expansive"]},
+    {"text": "There are a hundred tiny details in this plan and I need to make sure not a single one is broken.", "hand": ["ocd", "autism", "engineer"]},
+    {"text": "I keep getting distracted, I have twelve things to do, and the deadline is tomorrow morning.", "hand": ["adhd", "deep_work"]},
+    {"text": "Everyone is rushing to a conclusion but I feel like we are missing the bigger shape of this whole problem.", "hand": ["dyslexia", "gestalt", "contrarian"]},
+    {"text": "Should we sacrifice one village's grain stores to save the five other villages from famine?", "hand": ["utilitarian", "empath"]},
+    {"text": "I need to check whether my reasoning actually matches what is really happening out in the world.", "hand": ["calibrator"]},
+    {"text": "A rival keeps undercutting my prices and I suspect they are trying to drive me out of business on purpose."},
+    {"text": "I finally have room to grow. Should I expand the shop into the empty lot next door and hire more hands?"},
+    {"text": "My apprentice made a careless mistake that cost us a customer, and I have to decide how to respond."},
+    {"text": "Two of my advisors are giving me completely opposite recommendations and I have to pick one."},
+    {"text": "I have a gut feeling this stranger is trustworthy even though I have no evidence either way."},
+    {"text": "The blueprint looks fine on paper but I want to trace exactly how it would fail when actually built."},
+    {"text": "Everyone keeps agreeing with whatever the loudest person in the room says, and it worries me."},
+    {"text": "I could take the safe steady path or gamble on something no one has ever tried before."},
+    {"text": "A new law was passed and I need to understand its real underlying purpose, not just what it claims to do."},
+    {"text": "There is a strange illness spreading and I have to figure out the root cause before more people fall ill."},
+    {"text": "I am torn between what is best for my own family and what is best for the whole town.",  "_hint": "utilitarian vs empath"},
+    {"text": "My plan keeps drifting off course; I need to strip it back to the one thing that actually matters."},
+    {"text": "Someone in the group is dominating every discussion and the quieter voices are being drowned out."},
+    {"text": "I want to consider the strongest possible case FOR the idea I instinctively want to reject."},
+    {"text": "A traveler describes a distant land, and I want to imagine every wild possibility it could open up for trade."}
+  ]
+}

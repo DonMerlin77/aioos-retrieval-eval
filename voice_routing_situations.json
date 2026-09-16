@@ -1,0 +1,16 @@
+{
+  "_note": "Voice-routing eval. Each situation lists the Orlog voices that SHOULD fire, labeled against each voice's stated purpose in styles.py. Objective-ish ground truth: a router should surface these in its top-K.",
+  "K": 5,
+  "situations": [
+    {"text": "A merchant offers me a deal that seems far too generous to be real. Should I take it?", "relevant": ["paranoid", "frugal"]},
+    {"text": "My closest friend just lost their mother and I have no idea what to say to comfort them.", "relevant": ["empath"]},
+    {"text": "The entire town council agrees we should raise taxes, but I have a nagging doubt about it.", "relevant": ["contrarian", "paranoid"]},
+    {"text": "I have almost no money left and I need to decide what to cut to survive the winter.", "relevant": ["frugal"]},
+    {"text": "Should I pour everything I have into this one huge opportunity that could change my whole life?", "relevant": ["visionary", "paranoid", "expansive"]},
+    {"text": "There are a hundred tiny details in this plan and I need to make sure not a single one is broken.", "relevant": ["ocd", "autism", "engineer"]},
+    {"text": "I keep getting distracted, I have twelve things to do, and the deadline is tomorrow morning.", "relevant": ["adhd", "deep_work"]},
+    {"text": "Everyone is rushing to a conclusion but I feel like we are missing the bigger shape of this whole problem.", "relevant": ["dyslexia", "gestalt", "contrarian"]},
+    {"text": "Should we sacrifice one village's grain stores to save the five other villages from famine?", "relevant": ["utilitarian", "empath"]},
+    {"text": "I need to check whether my reasoning actually matches what is really happening out in the world.", "relevant": ["calibrator"]}
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "A merchant offers me a deal that seems far too generous to be real. Should I take it?": [
+    "calibrator",
+    "paranoid"
+  ],
+  "My closest friend just lost their mother and I have no idea what to say to comfort them.": [
+    "calibrator",
+    "clinician",
+    "empath",
+    "intuition"
+  ],
+  "The entire town council agrees we should raise taxes, but I have a nagging doubt about it.": [
+    "calibrator",
+    "contrarian",
+    "paranoid"
+  ],
+  "I have almost no money left and I need to decide what to cut to survive the winter.": [
+    "calibrator",
+    "frugal",
+    "paranoid",
+    "utilitarian"
+  ],
+  "Should I pour everything I have into this one huge opportunity that could change my whole life?": [
+    "frugal",
+    "paranoid",
+    "visionary"
+  ],
+  "There are a hundred tiny details in this plan and I need to make sure not a single one is broken.": [
+    "autism",
+    "calibrator",
+    "ocd",
+    "process_auditor"
+  ],
+  "I keep getting distracted, I have twelve things to do, and the deadline is tomorrow morning.": [
+    "adhd",
+    "deep_work",
+    "frugal"
+  ],
+  "Everyone is rushing to a conclusion but I feel like we are missing the bigger shape of this whole problem.": [
+    "dyslexia",
+    "gestalt"
+  ],
+  "Should we sacrifice one village's grain stores to save the five other villages from famine?": [
+    "empath",
+    "paranoid",
+    "utilitarian"
+  ],
+  "I need to check whether my reasoning actually matches what is really happening out in the world.": [
+    "calibrator",
+    "clinician",
+    "process_auditor"
+  ],
+  "A rival keeps undercutting my prices and I suspect they are trying to drive me out of business on purpose.": [
+    "advocate",
+    "paranoid",
+    "utilitarian"
+  ],
+  "I finally have room to grow. Should I expand the shop into the empty lot next door and hire more hands?": [
+    "expansive",
+    "frugal",
+    "utilitarian",
+    "visionary"
+  ],
+  "My apprentice made a careless mistake that cost us a customer, and I have to decide how to respond.": [
+    "calibrator",
+    "empath",
+    "paranoid",
+    "utilitarian"
+  ],
+  "Two of my advisors are giving me completely opposite recommendations and I have to pick one.": [
+    "advocate",
+    "calibrator",
+    "contrarian",
+    "process_auditor"
+  ],
+  "I have a gut feeling this stranger is trustworthy even though I have no evidence either way.": [
+    "calibrator",
+    "empath",
+    "intuition",
+    "paranoid"
+  ],
+  "The blueprint looks fine on paper but I want to trace exactly how it would fail when actually built.": [
+    "calibrator",
+    "engineer",
+    "ocd",
+    "paranoid"
+  ],
+  "Everyone keeps agreeing with whatever the loudest person in the room says, and it worries me.": [
+    "calibrator",
+    "contrarian",
+    "process_auditor"
+  ],
+  "I could take the safe steady path or gamble on something no one has ever tried before.": [
+    "expansive",
+    "frugal",
+    "paranoid",
+    "visionary"
+  ],
+  "A new law was passed and I need to understand its real underlying purpose, not just what it claims to do.": [
+    "calibrator",
+    "contrarian",
+    "paranoid"
+  ],
+  "There is a strange illness spreading and I have to figure out the root cause before more people fall ill.": [
+    "calibrator",
+    "clinician",
+    "ocd",
+    "paranoid"
+  ],
+  "I am torn between what is best for my own family and what is best for the whole town.": [
+    "advocate",
+    "empath",
+    "utilitarian"
+  ],
+  "My plan keeps drifting off course; I need to strip it back to the one thing that actually matters.": [
+    "calibrator",
+    "dyslexia",
+    "frugal",
+    "gestalt"
+  ],
+  "Someone in the group is dominating every discussion and the quieter voices are being drowned out.": [
+    "contrarian",
+    "empath",
+    "process_auditor"
+  ],
+  "I want to consider the strongest possible case FOR the idea I instinctively want to reject.": [
+    "advocate",
+    "calibrator",
+    "contrarian",
+    "intuition"
+  ],
+  "A traveler describes a distant land, and I want to imagine every wild possibility it could open up for trade.": [
+    "adhd",
+    "dyslexia",
+    "expansive",
+    "visionary"
+  ]
+}
