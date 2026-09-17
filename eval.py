@@ -176,6 +176,16 @@ def main():
         print(f"  {name:<10} = {mean:.2f}   95% CI [{lo:.2f}, {hi:.2f}]")
         print(f"     why: {LEGEND[name]}")
 
+    # SENSITIVITY: the smallest quality difference this eval can reliably DETECT at this n.
+    # Reported as the deciding-metric CI half-width -- a conservative bound (paired comparisons of
+    # similar embedders resolve finer, since the same queries correlate). A regression smaller than
+    # this is not reliably detectable at the current n; grow the query set to see smaller ones.
+    nd_mean, nd_lo, nd_hi = bootstrap_ci(scores["nDCG@%d" % K])
+    sensitivity = (nd_hi - nd_lo) / 2
+    print(f"\n  eval sensitivity: resolves nDCG@{K} differences of about >= {sensitivity:.2f} at n={len(queries)} "
+          f"(conservative; paired int8-vs-float does better).")
+    print(f"     why: this is the eval's usefulness -- the smallest embedder regression it can reliably catch.")
+
     # nDCG at other k, to show k=3 was not cherry-picked
     print("\n  nDCG at other cutoffs (k=3 is the headline; these show it is not cherry-picked):")
     for kk in (5, 10):
