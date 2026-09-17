@@ -56,6 +56,24 @@ Same stand-in embedder (`all-MiniLM-L6-v2`), two versions of the benchmark:
 
 The score *dropped* on the bigger set. That is the benchmark working: a tiny, easy corpus inflates retrieval scores because there is nothing to confuse the embedder. The realistic set with topical hard negatives is where retrieval quality actually gets tested. A benchmark that always reports high numbers is not measuring anything.
 
+## Does the eval have discriminating power? (why it's worth running)
+
+An eval only matters if it can tell good retrieval from bad. `compare_methods.py` runs three
+strategies through the same benchmark:
+
+| method | nDCG@3 | 95% CI |
+|---|---|---|
+| embedder (semantic) | 0.55 | [0.45, 0.65] |
+| lexical (word overlap, no embeddings) | 0.41 | [0.30, 0.52] |
+| random | 0.03 | [0.01, 0.06] |
+
+All three gaps are **resolvable** (the paired CI on the per-query difference excludes 0). The
+embedder resolvably beats keyword matching (+0.14 [+0.03, +0.24]), the analogue of an intrinsic
+gate's "beat BM25" floor. And the per-query breakdown shows *what breaks without good retrieval*:
+asked "is anyone a threat to me," keyword matching returns "a family arrived from a burned village"
+while the embedder returns the threatening note. The eval separates the methods and names the
+failures, which is the whole reason to run it.
+
 ## Run it
 
 ```sh
