@@ -1,5 +1,6 @@
 *.out
 *.pyc
+*_b3.out
 *_new.out
 .env
 __pycache__/

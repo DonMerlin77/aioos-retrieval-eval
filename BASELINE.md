@@ -68,6 +68,17 @@ cd ~/aioos_retrieval_eval && python eval.py
 - **current committed stand-in baseline; compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.**
 - (History: Run 1b n=30 → 0.47, Run 1c n=55 → 0.55.)
 
+### Run 1e — STAND-IN, n=113 (2026-09-17) — ADJUDICATED (current committed baseline)
+- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` · **set:** 88 memories, 113 queries
+- **nDCG@3 = 0.67**  95% CI [0.60, 0.74]  · nDCG@5 = 0.71 · nDCG@10 = 0.75
+- **eval sensitivity = 0.07** (smallest reliably-detectable nDCG regression at n=113; conservative, paired does better)
+- executed chance 0.03 · positive PASS · shuffle 0.02 · **hard-negative leakage 22/110 (~20%)**
+- The batch-3 additions (q86-113) are deliberately HARD: stale-vs-current traps (bridge rebuilt vs washed-out, well
+  cleaned vs sick, rockslide cleared). Leakage rose to ~20% = the traps bite. NOTABLE: the LLM judge itself marked the
+  stale hard negatives as judge=2 (no temporal model) -- the same blindspot the embedder has -- which validates them.
+- labels adjudicated (pair + missed-label audits → Tom ruled). This is the current committed baseline.
+- **compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.** (History: n=30→0.47, n=55→0.55, n=85→0.64.)
+
 ### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
 - run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)
 - read to report to Dan: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in

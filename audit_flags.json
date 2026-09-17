@@ -1,232 +1,252 @@
 [
   {
-    "query": "q56",
-    "memory": "m61",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory is relevant to horseshoes, which are related to getting a horse shod.",
-    "situation": "A knight asks where he can get his horse shod quickly.",
-    "memory_text": "A blacksmith is hammering out a rush order of horseshoes for a lord's cavalry."
-  },
-  {
-    "query": "q59",
-    "memory": "m64",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory is about recent travelers, making it relevant to the question.",
-    "situation": "A traveler asks who else has been passing through on the roads.",
-    "memory_text": "A group of pilgrims is passing through on their way to a distant shrine."
-  },
-  {
-    "query": "q61",
-    "memory": "m14",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory is relevant to traveling the southern routes, which the map is likely to cover.",
-    "situation": "A trader asks where to buy a map of the southern routes.",
-    "memory_text": "The river ferry on the south road has been out of service for a week; the ferryman is ill."
-  },
-  {
-    "query": "q62",
-    "memory": "m17",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory is relevant to the mayor's question as it mentions a sealed letter, which could potentially be related to the missing ledger.",
-    "situation": "The mayor asks if I have heard anything about his missing ledger.",
-    "memory_text": "A noble left a sealed letter behind in the common room; the wax bears a hawk crest."
-  },
-  {
-    "query": "q64",
-    "memory": "m69",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "Directly related to strange lights, relevant to the traveler's question.",
-    "situation": "A superstitious traveler asks about strange lights or hauntings.",
-    "memory_text": "A stable boy swears he saw lights moving in the abandoned watchtower at night."
-  },
-  {
-    "query": "q66",
-    "memory": "m50",
-    "issue": "OVER-LABELED",
-    "draft": 1,
-    "judge": 0,
-    "judge_reason": "The memory is about an early frost, not storms.",
-    "situation": "A sailor asks what the coming storm season looks like.",
-    "memory_text": "An early frost is expected within the week and may ruin the late crops."
-  },
-  {
-    "query": "q67",
-    "memory": "m3",
+    "query": "q86",
+    "memory": "m2",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 2,
-    "judge_reason": "The memory directly pertains to a potential dispute involving town guards that could escalate.",
-    "situation": "A guard asks if there are ongoing disputes that could turn ugly.",
-    "memory_text": "Two town guards argued loudly about unpaid wages before storming out of the tavern."
+    "judge_reason": "Directly answers the question about the north road's condition.",
+    "situation": "A traveler asks if the north road is passable now.",
+    "memory_text": "The blacksmith's daughter Mira warned me the bridge on the north road is washed out."
   },
   {
-    "query": "q68",
+    "query": "q87",
+    "memory": "m10",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly pertains to the safety of the well water.",
+    "situation": "Someone asks if the well water is safe to drink today.",
+    "memory_text": "The well water tasted strange yesterday and several villagers felt sick after drinking it."
+  },
+  {
+    "query": "q88",
+    "memory": "m13",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "Directly answers the question about the pass's usability.",
+    "situation": "Is the west mountain pass usable for a wagon right now?",
+    "memory_text": "A rockslide blocked the western mountain pass after the heavy rains."
+  },
+  {
+    "query": "q89",
+    "memory": "m9",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory involves a similar situation of receiving a threat, which could be relevant to understanding the blacksmith's edgy behavior.",
+    "situation": "The blacksmith seems on edge; is someone threatening him?",
+    "memory_text": "Someone slipped a threatening note under my door demanding I close the tavern."
+  },
+  {
+    "query": "q90",
+    "memory": "m80",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "Relevant to finding a solution for the patron's sleep issue.",
+    "situation": "A patron wants a strong remedy to help him sleep.",
+    "memory_text": "The apothecary also sells a strong sleeping draught, not just pain remedies."
+  },
+  {
+    "query": "q92",
+    "memory": "m16",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly identifies a likely candidate for the official scrutinizing finances.",
+    "situation": "An official is scrutinizing the merchants' finances; who is it?",
+    "memory_text": "A tax collector from the capital is expected in town sometime next week."
+  },
+  {
+    "query": "q93",
+    "memory": "m83",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "The memory is about entertainment in the square, which is relevant to the guest's question.",
+    "situation": "A guest asks if there is any entertainment in the square today.",
+    "memory_text": "A masked performer does knife tricks in the square on market days."
+  },
+  {
+    "query": "q93",
+    "memory": "m24",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory is relevant to potential entertainment, but doesn't confirm today's schedule.",
+    "situation": "A guest asks if there is any entertainment in the square today.",
+    "memory_text": "The mayor plans to give a speech in the square on the first day of the festival."
+  },
+  {
+    "query": "q95",
+    "memory": "m58",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly relates to potential corruption among town officials.",
+    "situation": "Is there any rumor of corruption among the town officials?",
+    "memory_text": "I know the sheriff drinks on duty, but I have kept it to myself."
+  },
+  {
+    "query": "q96",
+    "memory": "m28",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly answers who owes the tavern money.",
+    "situation": "Who owes the tavern money right now?",
+    "memory_text": "The cooper is demanding payment for the new ale barrels he delivered."
+  },
+  {
+    "query": "q97",
+    "memory": "m60",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "Directly addresses the guest's concern about stray dogs.",
+    "situation": "A guest is uneasy about dogs; are there strays around the tavern?",
+    "memory_text": "A stray dog has started guarding my tavern door every night."
+  },
+  {
+    "query": "q98",
+    "memory": "m20",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory is relevant to the topic of healers and tonics, which is directly related to the traveler's question.",
+    "situation": "A sick traveler asks whether the healer's tonic actually works.",
+    "memory_text": "A healer passing through is selling fever tonic by the market well."
+  },
+  {
+    "query": "q99",
+    "memory": "m82",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly relates to the collection of taxes, which is the merchant's inquiry.",
+    "situation": "A merchant asks whether the capital has sent anyone to collect taxes.",
+    "memory_text": "The lord's steward is auditing every merchant's books this month."
+  },
+  {
+    "query": "q100",
+    "memory": "m2",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "Directly informs the decision to warn travelers.",
+    "situation": "Should I warn travelers away from the north bridge?",
+    "memory_text": "The blacksmith's daughter Mira warned me the bridge on the north road is washed out."
+  },
+  {
+    "query": "q101",
     "memory": "m73",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "The memory is relevant to pain relief, but the patron can still be directed to the apothecary to explore other options.",
-    "situation": "A patron in pain asks where to get something for an aching joint.",
+    "judge_reason": "Relevant to pain relief options, but not the only possible response.",
+    "situation": "A patron asks for something to ease an aching joint.",
     "memory_text": "The apothecary has run out of willow bark for pain."
   },
   {
-    "query": "q69",
-    "memory": "m48",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory is relevant to the topic of punishment for theft, but doesn't directly relate to the specific case of the young thief.",
-    "situation": "The town is debating how to punish a young thief; what are people saying?",
-    "memory_text": "A wanted poster for a horse thief was nailed up in the square yesterday."
-  },
-  {
-    "query": "q70",
-    "memory": "m17",
+    "query": "q103",
+    "memory": "m10",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 2,
-    "judge_reason": "The man cannot read and needs help with a letter, and the wax seal with a hawk crest on the letter provides a clue to the letter's origin and the noble's identity.",
-    "situation": "A man who cannot read asks if anyone can help him with a letter.",
-    "memory_text": "A noble left a sealed letter behind in the common room; the wax bears a hawk crest."
+    "judge_reason": "Directly related to the current situation of the well's safety.",
+    "situation": "Is the well still making people sick?",
+    "memory_text": "The well water tasted strange yesterday and several villagers felt sick after drinking it."
   },
   {
-    "query": "q71",
-    "memory": "m61",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory shows the blacksmith's capability to handle rush orders for a lord, which is relevant to handling a large military order.",
-    "situation": "A lord's quartermaster asks if the blacksmith can handle a large military order.",
-    "memory_text": "A blacksmith is hammering out a rush order of horseshoes for a lord's cavalry."
-  },
-  {
-    "query": "q72",
-    "memory": "m64",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory indicates recent traffic on the road, implying it's well traveled.",
-    "situation": "A pilgrim asks whether the shrine road is safe and well traveled.",
-    "memory_text": "A group of pilgrims is passing through on their way to a distant shrine."
-  },
-  {
-    "query": "q73",
-    "memory": "m12",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "Relevant to the tavern keeper's concerns about grain, but not directly about the mill's capability.",
-    "situation": "Someone asks whether the mill can grind the grain on time this week.",
-    "memory_text": "My supplier raised the price of grain again; the third increase this season."
-  },
-  {
-    "query": "q74",
-    "memory": "m69",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory hints at potential mysterious or unauthorized activity, making it relevant to assessing danger.",
-    "situation": "A worried parent asks if the abandoned watchtower is dangerous for children.",
-    "memory_text": "A stable boy swears he saw lights moving in the abandoned watchtower at night."
-  },
-  {
-    "query": "q74",
-    "memory": "m25",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory indicates potential danger from wildlife in the area.",
-    "situation": "A worried parent asks if the abandoned watchtower is dangerous for children.",
-    "memory_text": "Wolves came down from the hills during the last cold snap and killed a farmer's sheep."
-  },
-  {
-    "query": "q75",
-    "memory": "m43",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "Relevant to business struggles, but not directly about failed deals or contracts.",
-    "situation": "A merchant asks if any deals or contracts have gone sour lately.",
-    "memory_text": "The rival tavern across town has been undercutting my prices to steal my regulars."
-  },
-  {
-    "query": "q77",
+    "query": "q105",
     "memory": "m38",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "The memory is relevant because it involves a valuable item and a potentially dishonest individual.",
-    "situation": "A guard asks about recent thefts or people caught stealing.",
+    "judge_reason": "The memory implies the existence of a lender who accepts collateral, which is relevant to lending money to the desperate.",
+    "situation": "Who in town lends money to the desperate?",
     "memory_text": "A gambler left a fine dagger as collateral against a debt he has not repaid."
   },
   {
-    "query": "q79",
-    "memory": "m53",
+    "query": "q106",
+    "memory": "m58",
     "issue": "GRADE-MISMATCH",
     "draft": 1,
     "judge": 2,
-    "judge_reason": "Directly answers the question about the gate toll.",
-    "situation": "A patron asks whether the gate toll is worth avoiding by another route.",
-    "memory_text": "By order of the baron, a new toll is now charged at the west gate."
+    "judge_reason": "The memory directly answers the question about official misconduct.",
+    "situation": "Any official misconduct I should be aware of?",
+    "memory_text": "I know the sheriff drinks on duty, but I have kept it to myself."
   },
   {
-    "query": "q79",
-    "memory": "m13",
+    "query": "q106",
+    "memory": "m3",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "Alternative route consideration is relevant to toll avoidance.",
-    "situation": "A patron asks whether the gate toll is worth avoiding by another route.",
-    "memory_text": "A rockslide blocked the western mountain pass after the heavy rains."
+    "judge_reason": "Relevant to potential official misconduct by town guards.",
+    "situation": "Any official misconduct I should be aware of?",
+    "memory_text": "Two town guards argued loudly about unpaid wages before storming out of the tavern."
   },
   {
-    "query": "q81",
-    "memory": "m11",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory involves travelers passing through, which is relevant to the question about pilgrims.",
-    "situation": "A devout traveler asks whether pilgrims come through this town.",
-    "memory_text": "A caravan of refugees passed through heading south, saying their village burned."
-  },
-  {
-    "query": "q82",
-    "memory": "m47",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory of counterfeit coins could indicate a motive for theft, such as financial gain or an attempt to cover illegal activities.",
-    "situation": "The mayor asks who might have had reason to take his ledger.",
-    "memory_text": "Counterfeit coins have been passing through town; two turned up in my till this week."
-  },
-  {
-    "query": "q83",
-    "memory": "m62",
+    "query": "q108",
+    "memory": "m83",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "Recent experience with the miller's household suggests they may have a birth imminent.",
-    "situation": "A midwife asks whether any households need her services soon.",
-    "memory_text": "A midwife was called to the miller's house three nights running."
+    "judge_reason": "The memory provides context about similar performances being a normal occurrence.",
+    "situation": "A performer is throwing knives in the square; is he a danger?",
+    "memory_text": "A masked performer does knife tricks in the square on market days."
   },
   {
-    "query": "q85",
-    "memory": "m66",
+    "query": "q109",
+    "memory": "m41",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The miller's behavior might be related to his son's upcoming wedding and associated stress.",
+    "situation": "The miller keeps avoiding me; why might that be?",
+    "memory_text": "The miller's son is nervous and jumpy about his wedding feast next month."
+  },
+  {
+    "query": "q110",
+    "memory": "m84",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "The memory is relevant to the southern roads, which could help with the traveler's inquiry.",
-    "situation": "A traveler asks whether the southern roads are open and how to handle tolls.",
-    "memory_text": "A peddler is selling maps of the southern trade routes."
+    "judge_reason": "Relevant to fires in the area, but specifics of the blacksmith's incident aren't directly about the recent fire's impact.",
+    "situation": "Did the recent fire hurt anyone or spread?",
+    "memory_text": "The blacksmith's forge fire got out of hand and scorched a wall last night."
+  },
+  {
+    "query": "q110",
+    "memory": "m37",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The memory directly addresses the situation's concern about the fire's impact on people.",
+    "situation": "Did the recent fire hurt anyone or spread?",
+    "memory_text": "My best cook burned her hand badly and cannot work the hearth for a while."
+  },
+  {
+    "query": "q111",
+    "memory": "m20",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory mentions a tonic, which could be related to calming or sleeping, but it's specifically for fever.",
+    "situation": "Where can I get something to calm my nerves and sleep?",
+    "memory_text": "A healer passing through is selling fever tonic by the market well."
+  },
+  {
+    "query": "q113",
+    "memory": "m61",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory indicates the blacksmith is busy, which might affect the safety or practicality of visiting.",
+    "situation": "Is it safe to visit the blacksmith at his forge right now?",
+    "memory_text": "A blacksmith is hammering out a rush order of horseshoes for a lord's cavalry."
   }
 ]
