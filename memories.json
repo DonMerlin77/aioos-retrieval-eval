@@ -1,6 +1,6 @@
 {
   "_note": "AIOOS NPC memory-retrieval eval. An NPC (a tavern keeper) has memories. Each query is a situation; 'labels' names the memory ids that SHOULD be recalled, each with a relevance GRADE and a written rationale. 'hard_negative' names a topically-close memory that should NOT be retrieved (a control against topic-matching). Ground truth is hand-labeled.",
-  "_status": "ADJUDICATED 2026-09-16 at n=55 (60 memories, 55 queries). Labels drafted by assistant, audited by an independent judge (audit_labels.py, llama-3.3-70b), disagreements ruled on by Tom (ground truth of record). n<=30 changes: q9/m33 1->2, q11/m29->0, q13/m7 0->1, q16/m10 0->1 (hn m10->m19), q21/m38 0->1. n31-55 changes: q44/m5 1->2, q54/m2 1->2 (co-primaries allowed where two answers are equally direct); all judge-flagged hard negatives kept at 0 (clean category errors); judge downgrades of clear primaries overridden per the consistent judge-leniency pattern.",
+  "_status": "ADJUDICATED 2026-09-16 at n=55 (60 memories, 55 queries). Labels drafted by assistant, audited by an independent judge (audit_labels.py, llama-3.3-70b), disagreements ruled on by Tom (ground truth of record). n<=30 changes: q9/m33 1->2, q11/m29->0, q13/m7 0->1, q16/m10 0->1 (hn m10->m19), q21/m38 0->1. n31-55 changes: q44/m5 1->2, q54/m2 1->2 (co-primaries allowed where two answers are equally direct); all judge-flagged hard negatives kept at 0 (clean category errors); judge downgrades of clear primaries overridden per the consistent judge-leniency pattern. MISSED-LABEL audit (audit_missed.py) re-graded retrieved-but-unlabeled memories: judge flagged 86/206 (LLM over-inclusiveness), but only CLEAR PRIMARY misses adopted (rule: adopt only if a response ignoring it would be plainly wrong): q5/m15=1, q6/m9=2, q6/m43=1, q14/m51=2, q19/m50=1, q39/m58=2, q40/m44=2. The ~75 loose grade-1 flags rejected as evidence the strict-label design is what gives the benchmark discriminating power.",
   "_label_schema": {
     "what_is_evaluated": "Given a situation the NPC is in, does the embedder retrieve the memories a thoughtful NPC would actually draw on to respond? APPLICATION target (right memory for a game moment), not academic IR. Deliberately distinct from Dan's K1 gate (nDCG on BEIR).",
     "grades": {
@@ -98,12 +98,15 @@
 
     {"id": "q5", "text": "Someone asks if there has been any recent danger near the eastern mountains.", "difficulty": "medium",
      "labels": {"m7": {"grade": 2, "why": "A concrete danger in the east (mine collapse, trapped miners)."},
-                "m8": {"grade": 1, "why": "The dragon song is eastern-mountains lore/rumor, supporting color, not confirmed danger."}},
+                "m8": {"grade": 1, "why": "The dragon song is eastern-mountains lore/rumor, supporting color, not confirmed danger."},
+                "m15": {"grade": 1, "why": "Bandits on the east road are an eastern danger, supporting depending on how near the road runs to the mountains (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m32", "hard_negative_why": "m32 is danger to the east (soldiers at the border) but a border two valleys east, not the eastern mountains; tempting but wrong locale."},
 
     {"id": "q6", "text": "I am worried about money and whether I can keep the tavern running.", "difficulty": "medium",
      "labels": {"m12": {"grade": 2, "why": "Three straight grain price hikes is the direct financial pressure."},
-                "m28": {"grade": 1, "why": "The cooper demanding payment is an outstanding cost pressing on the tavern."}},
+                "m28": {"grade": 1, "why": "The cooper demanding payment is an outstanding cost pressing on the tavern."},
+                "m9": {"grade": 2, "why": "A note demanding I close the tavern is a direct, existential threat to keeping it running (missed-label audit, Tom 2026-09-16)."},
+                "m43": {"grade": 1, "why": "The rival undercutting prices to steal my regulars is direct competitive pressure on income (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m29", "hard_negative_why": "m29 is about money too (a big tab paid) but it is good news, not a threat to staying open."},
 
     {"id": "q7", "text": "A guest wants to know if the tavern is a safe place to stay the night.", "difficulty": "medium",
@@ -140,7 +143,8 @@
                 "m7": {"grade": 1, "why": "The collapsed mine is a hazardous spot outside town worth warning children away from (a 'don't go there' note), even if not the literal answer (Tom, 2026-09-16)."}}},
 
     {"id": "q14", "text": "Someone asks me to recommend a fast way across the river to the south.", "difficulty": "easy",
-     "labels": {"m14": {"grade": 2, "why": "The south-road ferry being out of service is the decisive fact for crossing the river south."}},
+     "labels": {"m14": {"grade": 2, "why": "The south-road ferry being out of service is the decisive fact for crossing the river south."},
+                "m51": {"grade": 2, "why": "The river running high and threatening to flood the low south road is decisive, safety-critical for crossing (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m11", "hard_negative_why": "m11 mentions travelers heading south but says nothing about the river crossing."},
 
     {"id": "q15", "text": "A guard asks if I have noticed anything that might point to a planned crime.", "difficulty": "hard",
@@ -164,7 +168,8 @@
 
     {"id": "q19", "text": "My grain and food stores feel unreliable. What is threatening my supplies?", "difficulty": "medium",
      "labels": {"m21": {"grade": 2, "why": "Rats getting into the grain store is a direct threat to food supplies."},
-                "m12": {"grade": 1, "why": "Rising grain prices threaten the ability to restock, a supply pressure."}},
+                "m12": {"grade": 1, "why": "Rising grain prices threaten the ability to restock, a supply pressure."},
+                "m50": {"grade": 1, "why": "An early frost that may ruin the late crops is a coming threat to the food supply (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m40", "hard_negative_why": "m40 is about wine spoiling, adjacent supply lore, but not what is threatening the grain stores."},
 
     {"id": "q20", "text": "A regular asks whether anything is wrong with the old man who always sits alone.", "difficulty": "easy",
@@ -253,12 +258,14 @@
 
     {"id": "q39", "text": "A newcomer asks whether the town watch can be relied on for protection.", "difficulty": "medium",
      "labels": {"m49": {"grade": 2, "why": "The night watch cut to a single man directly answers whether protection can be relied on."},
-                "m48": {"grade": 1, "why": "A wanted thief about is the kind of threat the watch would handle, relevant context."}},
+                "m48": {"grade": 1, "why": "A wanted thief about is the kind of threat the watch would handle, relevant context."},
+                "m58": {"grade": 2, "why": "The sheriff drinking on duty directly undermines whether the watch can be relied on (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m3", "hard_negative_why": "m3 is guards arguing over wages, an internal dispute, not the watch's protective capacity."},
 
     {"id": "q40", "text": "A trusted friend asks whether I keep any secrets about people in town.", "difficulty": "hard",
      "labels": {"m58": {"grade": 2, "why": "Knowing the sheriff drinks on duty and staying silent is a kept secret about a townsperson."},
-                "m59": {"grade": 2, "why": "A regular's confession that he cannot read, kept quiet, is a kept secret about a townsperson."}},
+                "m59": {"grade": 2, "why": "A regular's confession that he cannot read, kept quiet, is a kept secret about a townsperson."},
+                "m44": {"grade": 2, "why": "Two lovers from feuding families meeting secretly in my back room is a secret I keep about townsfolk (missed-label audit, Tom 2026-09-16)."}},
      "hard_negative": "m17", "hard_negative_why": "m17 is a sealed letter, secret-ish, but an object left behind, not a townsperson's secret I hold."},
 
     {"id": "q41", "text": "A visiting gourmet asks about the tavern's reputation for food and drink.", "difficulty": "medium",

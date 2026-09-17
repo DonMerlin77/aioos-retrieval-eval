@@ -82,6 +82,31 @@ def per_query_scores(queries, ranked_by_q, k=K):
     return {"nDCG@%d" % k: ndcg, "recall@%d" % k: recall, "hit@%d" % k: hit, "MRR": rr}
 
 
+def ndcg_only(queries, ranked_by_q, k):
+    """Per-query nDCG@k for an arbitrary k (so we can report @3/@5/@10 and show k=3 was not
+    cherry-picked)."""
+    out = {}
+    for q in queries:
+        g = grades(q)
+        ideal = sorted((v for v in g.values() if v > 0), reverse=True)[:k]
+        idcg = _dcg(ideal)
+        gains = [g.get(mid, 0) for mid in ranked_by_q[q["id"]][:k]]
+        out[q["id"]] = (_dcg(gains) / idcg) if idcg > 0 else 0.0
+    return out
+
+
+def executed_chance(queries, mem_ids, k=K, trials=1000, seed=SEED):
+    """The true chance floor: mean nDCG@k of uniformly RANDOM rankings (design mirrors K1's
+    executed_chance_level). Complements the shuffle control -- shuffle scrambles the labels,
+    this randomizes the ranking; a real metric must sit well above both."""
+    rng = np.random.default_rng(seed)
+    per_trial = []
+    for _ in range(trials):
+        rand = {q["id"]: list(rng.permutation(mem_ids)) for q in queries}
+        per_trial.append(float(np.mean(list(ndcg_only(queries, rand, k).values()))))
+    return float(np.mean(per_trial)), float(np.std(per_trial))
+
+
 def bootstrap_ci(per_query, n_boot=N_BOOT, seed=SEED):
     """95% CI on the mean, by resampling the queries with replacement. With n=6 this CI is wide on
     purpose -- it is the honest statement that a 6-query mean is not a precise number."""
@@ -150,6 +175,17 @@ def main():
         mean, lo, hi = bootstrap_ci(per_q)
         print(f"  {name:<10} = {mean:.2f}   95% CI [{lo:.2f}, {hi:.2f}]")
         print(f"     why: {LEGEND[name]}")
+
+    # nDCG at other k, to show k=3 was not cherry-picked
+    print("\n  nDCG at other cutoffs (k=3 is the headline; these show it is not cherry-picked):")
+    for kk in (5, 10):
+        m, lo, hi = bootstrap_ci(ndcg_only(queries, ranked, kk))
+        print(f"    nDCG@{kk:<2} = {m:.2f}   95% CI [{lo:.2f}, {hi:.2f}]")
+
+    # EXECUTED CHANCE FLOOR: mean nDCG@3 of random rankings (the true floor)
+    ch_mean, ch_std = executed_chance(queries, mem_ids, k=K)
+    print(f"\n  executed chance floor: random-ranking nDCG@{K} = {ch_mean:.3f} (std {ch_std:.3f}, 1000 trials)")
+    print(f"     why: the real score ({np.mean(list(scores['nDCG@%d' % K].values())):.2f}) must sit far above this floor, or it is not retrieval.")
 
     # POSITIVE CONTROL: a near-copy query must retrieve its exact memory at rank 1
     pcvec = embed(model, [pc["text"]])[0]

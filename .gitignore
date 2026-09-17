@@ -1,4 +1,5 @@
-__pycache__/
+*.out
 *.pyc
 .env
-*.out
+__pycache__/
+missed_flags.json
