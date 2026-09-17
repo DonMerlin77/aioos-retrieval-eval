@@ -1,5 +1,6 @@
 *.out
 *.pyc
+*_new.out
 .env
 __pycache__/
 missed_flags.json

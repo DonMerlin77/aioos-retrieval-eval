@@ -57,6 +57,17 @@ cd ~/aioos_retrieval_eval && python eval.py
 - **THIS is the committed stand-in baseline; compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.**
 - (Run 1b n=30 nDCG@3=0.47 was the pre-widening stage; kept above for history.)
 
+### Run 1d — STAND-IN, n=85 (2026-09-17) — ADJUDICATED (current committed baseline)
+- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` · **set:** 75 memories, 85 queries
+- **nDCG@3 = 0.64**  95% CI [0.56, 0.72]  ← DECIDING · nDCG@5 = 0.68 · nDCG@10 = 0.72
+- **eval sensitivity = 0.08** (smallest nDCG regression reliably detectable at n=85; conservative, paired does better)
+- executed chance 0.03 · positive PASS · shuffle 0.02 · hard-negative leakage 12/82
+- labels adjudicated (pair + missed-label audits → Tom ruled). Note: score rose 0.55→0.64 vs n=55 because the
+  30 new queries skew easier (more single-primary easy-tier); discriminating power intact (leakage ~15%, controls hold).
+  To keep the bar hard as it grows, future additions should skew medium/hard tier.
+- **current committed stand-in baseline; compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.**
+- (History: Run 1b n=30 → 0.47, Run 1c n=55 → 0.55.)
+
 ### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
 - run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)
 - read to report to Dan: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in

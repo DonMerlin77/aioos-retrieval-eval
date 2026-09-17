@@ -14,7 +14,7 @@ which are the only ones that can actually distort the score.
 
 Run:  python audit_missed.py        (writes missed_flags.json)
 """
-import json
+import json, re, sys
 from pathlib import Path
 from eval import load, run_model, MODEL, K
 from audit_labels import judge
@@ -23,7 +23,10 @@ from sentence_transformers import SentenceTransformer
 TOPK = 5  # audit a little deeper than the deciding k=3, to catch near-misses too
 
 def main():
+    only = {a for a in sys.argv[1:] if re.fullmatch(r"q\d+", a)}  # audit only these query ids if given
     memories, queries, _ = load()
+    if only:
+        queries = [q for q in queries if q["id"] in only]
     mem = {m["id"]: m["text"] for m in memories}
     print(f"loading embedder: {MODEL}")
     model = SentenceTransformer(MODEL)

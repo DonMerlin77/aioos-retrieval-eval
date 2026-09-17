@@ -1,252 +1,232 @@
 [
   {
-    "query": "q32",
-    "memory": "m47",
+    "query": "q56",
+    "memory": "m61",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "Relevant to assessing town's current financial honesty and potential risks.",
-    "situation": "A traveler asks whether it is safe to carry coin openly in town right now.",
-    "memory_text": "Counterfeit coins have been passing through town; two turned up in my till this week."
+    "judge_reason": "The memory is relevant to horseshoes, which are related to getting a horse shod.",
+    "situation": "A knight asks where he can get his horse shod quickly.",
+    "memory_text": "A blacksmith is hammering out a rush order of horseshoes for a lord's cavalry."
   },
   {
-    "query": "q32",
-    "memory": "m29",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory indicates a recent instance of openly handling large amounts of money without issue.",
-    "situation": "A traveler asks whether it is safe to carry coin openly in town right now.",
-    "memory_text": "A rich patron settled a very large tab in silver and tipped generously."
-  },
-  {
-    "query": "q33",
-    "memory": "m30",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory could hint at a possible reason for Elsa's departure, such as a romantic scandal.",
-    "situation": "A gossip asks whether there are any secret romances in town.",
-    "memory_text": "Elsa the barmaid quit suddenly last week without giving a reason."
-  },
-  {
-    "query": "q34",
-    "memory": "m46",
+    "query": "q59",
+    "memory": "m64",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "The memory is about rare spices and a future event, making it relevant to the cook's query.",
-    "situation": "A cook asks where they can buy rare spices in the near future.",
-    "memory_text": "A spice caravan carrying rare pepper is due in town in about a fortnight."
+    "judge_reason": "The memory is about recent travelers, making it relevant to the question.",
+    "situation": "A traveler asks who else has been passing through on the roads.",
+    "memory_text": "A group of pilgrims is passing through on their way to a distant shrine."
   },
   {
-    "query": "q37",
-    "memory": "m34",
+    "query": "q61",
+    "memory": "m14",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "Relevant to understanding potential crop failure patterns in the region.",
-    "situation": "A farmer asks whether the coming weather will threaten his crops.",
-    "memory_text": "Word came that the harvest failed in two towns to the west this year."
+    "judge_reason": "The memory is relevant to traveling the southern routes, which the map is likely to cover.",
+    "situation": "A trader asks where to buy a map of the southern routes.",
+    "memory_text": "The river ferry on the south road has been out of service for a week; the ferryman is ill."
   },
   {
-    "query": "q39",
-    "memory": "m3",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory indicates potential issues with the town guard's morale or stability, which is relevant to their reliability for protection.",
-    "situation": "A newcomer asks whether the town watch can be relied on for protection.",
-    "memory_text": "Two town guards argued loudly about unpaid wages before storming out of the tavern."
-  },
-  {
-    "query": "q40",
+    "query": "q62",
     "memory": "m17",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "The memory involves potentially sensitive information about someone in town, which is relevant to the question about keeping secrets.",
-    "situation": "A trusted friend asks whether I keep any secrets about people in town.",
+    "judge_reason": "The memory is relevant to the mayor's question as it mentions a sealed letter, which could potentially be related to the missing ledger.",
+    "situation": "The mayor asks if I have heard anything about his missing ledger.",
     "memory_text": "A noble left a sealed letter behind in the common room; the wax bears a hawk crest."
   },
   {
-    "query": "q41",
-    "memory": "m56",
+    "query": "q64",
+    "memory": "m69",
     "issue": "GRADE-MISMATCH",
     "draft": 2,
     "judge": 1,
-    "judge_reason": "The memory is about the tavern's drink, which is relevant to the gourmet's inquiry.",
-    "situation": "A visiting gourmet asks about the tavern's reputation for food and drink.",
-    "memory_text": "Travelers keep saying my ale is the best between here and the capital."
+    "judge_reason": "Directly related to strange lights, relevant to the traveler's question.",
+    "situation": "A superstitious traveler asks about strange lights or hauntings.",
+    "memory_text": "A stable boy swears he saw lights moving in the abandoned watchtower at night."
   },
   {
-    "query": "q41",
-    "memory": "m57",
-    "issue": "GRADE-MISMATCH",
+    "query": "q66",
+    "memory": "m50",
+    "issue": "OVER-LABELED",
     "draft": 1,
+    "judge": 0,
+    "judge_reason": "The memory is about an early frost, not storms.",
+    "situation": "A sailor asks what the coming storm season looks like.",
+    "memory_text": "An early frost is expected within the week and may ruin the late crops."
+  },
+  {
+    "query": "q67",
+    "memory": "m3",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
     "judge": 2,
-    "judge_reason": "The memory is directly related to the situation, as it involves a gourmand judging food and drink, which is the same context as the visiting gourmet's inquiry.",
-    "situation": "A visiting gourmet asks about the tavern's reputation for food and drink.",
-    "memory_text": "A traveling gourmand is going tavern to tavern quietly judging the food and drink."
+    "judge_reason": "The memory directly pertains to a potential dispute involving town guards that could escalate.",
+    "situation": "A guard asks if there are ongoing disputes that could turn ugly.",
+    "memory_text": "Two town guards argued loudly about unpaid wages before storming out of the tavern."
   },
   {
-    "query": "q41",
-    "memory": "m40",
+    "query": "q68",
+    "memory": "m73",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "The memory is relevant to pain relief, but the patron can still be directed to the apothecary to explore other options.",
+    "situation": "A patron in pain asks where to get something for an aching joint.",
+    "memory_text": "The apothecary has run out of willow bark for pain."
+  },
+  {
+    "query": "q69",
+    "memory": "m48",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "Relevant to drink quality, but not the tavern's overall reputation.",
-    "situation": "A visiting gourmet asks about the tavern's reputation for food and drink.",
-    "memory_text": "A merchant warned that spiced wine spoils fast once a crate is opened in the heat."
+    "judge_reason": "The memory is relevant to the topic of punishment for theft, but doesn't directly relate to the specific case of the young thief.",
+    "situation": "The town is debating how to punish a young thief; what are people saying?",
+    "memory_text": "A wanted poster for a horse thief was nailed up in the square yesterday."
   },
   {
-    "query": "q42",
-    "memory": "m1",
+    "query": "q70",
+    "memory": "m17",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 2,
+    "judge_reason": "The man cannot read and needs help with a letter, and the wax seal with a hawk crest on the letter provides a clue to the letter's origin and the noble's identity.",
+    "situation": "A man who cannot read asks if anyone can help him with a letter.",
+    "memory_text": "A noble left a sealed letter behind in the common room; the wax bears a hawk crest."
+  },
+  {
+    "query": "q71",
+    "memory": "m61",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "The memory shows the blacksmith's capability to handle rush orders for a lord, which is relevant to handling a large military order.",
+    "situation": "A lord's quartermaster asks if the blacksmith can handle a large military order.",
+    "memory_text": "A blacksmith is hammering out a rush order of horseshoes for a lord's cavalry."
+  },
+  {
+    "query": "q72",
+    "memory": "m64",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "The memory indicates recent traffic on the road, implying it's well traveled.",
+    "situation": "A pilgrim asks whether the shrine road is safe and well traveled.",
+    "memory_text": "A group of pilgrims is passing through on their way to a distant shrine."
+  },
+  {
+    "query": "q73",
+    "memory": "m12",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "The royal seal implies a potential connection to the authorities, making the stranger's presence relevant to who might be judging the tavern.",
-    "situation": "Is anyone new watching or judging my tavern that I should try to impress?",
-    "memory_text": "A hooded stranger paid for a room with a gold coin stamped with the royal seal."
+    "judge_reason": "Relevant to the tavern keeper's concerns about grain, but not directly about the mill's capability.",
+    "situation": "Someone asks whether the mill can grind the grain on time this week.",
+    "memory_text": "My supplier raised the price of grain again; the third increase this season."
   },
   {
-    "query": "q43",
+    "query": "q74",
+    "memory": "m69",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "The memory hints at potential mysterious or unauthorized activity, making it relevant to assessing danger.",
+    "situation": "A worried parent asks if the abandoned watchtower is dangerous for children.",
+    "memory_text": "A stable boy swears he saw lights moving in the abandoned watchtower at night."
+  },
+  {
+    "query": "q74",
     "memory": "m25",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "The memory is relevant to the topic of animals around the area, but doesn't directly answer the question about animals at the tavern.",
-    "situation": "A guest asks whether any animals hang around the tavern.",
+    "judge_reason": "The memory indicates potential danger from wildlife in the area.",
+    "situation": "A worried parent asks if the abandoned watchtower is dangerous for children.",
     "memory_text": "Wolves came down from the hills during the last cold snap and killed a farmer's sheep."
   },
   {
-    "query": "q44",
-    "memory": "m5",
+    "query": "q75",
+    "memory": "m43",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "Relevant to business struggles, but not directly about failed deals or contracts.",
+    "situation": "A merchant asks if any deals or contracts have gone sour lately.",
+    "memory_text": "The rival tavern across town has been undercutting my prices to steal my regulars."
+  },
+  {
+    "query": "q77",
+    "memory": "m38",
+    "issue": "MISSED-RELEVANT",
+    "draft": 0,
+    "judge": 1,
+    "judge_reason": "The memory is relevant because it involves a valuable item and a potentially dishonest individual.",
+    "situation": "A guard asks about recent thefts or people caught stealing.",
+    "memory_text": "A gambler left a fine dagger as collateral against a debt he has not repaid."
+  },
+  {
+    "query": "q79",
+    "memory": "m53",
     "issue": "GRADE-MISMATCH",
     "draft": 1,
     "judge": 2,
-    "judge_reason": "The memory is directly about an upcoming celebration.",
-    "situation": "A patron asks about upcoming weddings or celebrations worth attending.",
-    "memory_text": "The harvest festival is in three days and the mayor asked me to brew extra ale for it."
+    "judge_reason": "Directly answers the question about the gate toll.",
+    "situation": "A patron asks whether the gate toll is worth avoiding by another route.",
+    "memory_text": "By order of the baron, a new toll is now charged at the west gate."
   },
   {
-    "query": "q44",
-    "memory": "m39",
+    "query": "q79",
+    "memory": "m13",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "The ringing chapel bell could imply a potential wedding or celebration, making it relevant to the patron's inquiry.",
-    "situation": "A patron asks about upcoming weddings or celebrations worth attending.",
-    "memory_text": "The chapel bell has been ringing at odd hours and no one knows who is ringing it."
+    "judge_reason": "Alternative route consideration is relevant to toll avoidance.",
+    "situation": "A patron asks whether the gate toll is worth avoiding by another route.",
+    "memory_text": "A rockslide blocked the western mountain pass after the heavy rains."
   },
   {
-    "query": "q45",
-    "memory": "m41",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "Similar situation of pre-wedding nerves, but different context.",
-    "situation": "A nervous groom asks me for reassurance before his big day.",
-    "memory_text": "The miller's son is nervous and jumpy about his wedding feast next month."
-  },
-  {
-    "query": "q46",
-    "memory": "m59",
-    "issue": "GRADE-MISMATCH",
-    "draft": 2,
-    "judge": 1,
-    "judge_reason": "The memory reveals a local's hidden struggle, which might be the kind of quiet need the traveler is asking about.",
-    "situation": "A kindly traveler asks if anyone local quietly needs help but will not ask for it.",
-    "memory_text": "A regular confessed he cannot read and begged me to keep it quiet."
-  },
-  {
-    "query": "q46",
-    "memory": "m30",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "The memory of Elsa quitting could imply she might be in a difficult situation, making it relevant to the traveler's inquiry.",
-    "situation": "A kindly traveler asks if anyone local quietly needs help but will not ask for it.",
-    "memory_text": "Elsa the barmaid quit suddenly last week without giving a reason."
-  },
-  {
-    "query": "q47",
-    "memory": "m27",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "Potential criminal activity in the area.",
-    "situation": "A guard asks whether there are any wanted criminals around town.",
-    "memory_text": "Someone tried to pick the lock on the cellar door two nights ago."
-  },
-  {
-    "query": "q48",
-    "memory": "m15",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
-    "judge": 1,
-    "judge_reason": "Relevant to travel safety, which is related to road conditions.",
-    "situation": "A traveler asks whether the roads have new fees or checkpoints.",
-    "memory_text": "Travelers say bandits have been seen on the east road around dusk."
-  },
-  {
-    "query": "q49",
-    "memory": "m21",
-    "issue": "GRADE-MISMATCH",
-    "draft": 1,
-    "judge": 2,
-    "judge_reason": "Directly related to food safety concern.",
-    "situation": "A worried guest asks whether the town's food and water are safe to consume now.",
-    "memory_text": "I have seen rats getting into the grain store behind the kitchen."
-  },
-  {
-    "query": "q52",
-    "memory": "m32",
-    "issue": "GRADE-MISMATCH",
-    "draft": 1,
-    "judge": 2,
-    "judge_reason": "The memory directly pertains to potential military action near the neighboring lands.",
-    "situation": "A lord's envoy asks about the stability of the neighboring lands.",
-    "memory_text": "A scout reported soldiers massing at the border two valleys east."
-  },
-  {
-    "query": "q52",
+    "query": "q81",
     "memory": "m11",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "Relevant to regional stability, indicating potential unrest.",
-    "situation": "A lord's envoy asks about the stability of the neighboring lands.",
+    "judge_reason": "The memory involves travelers passing through, which is relevant to the question about pilgrims.",
+    "situation": "A devout traveler asks whether pilgrims come through this town.",
     "memory_text": "A caravan of refugees passed through heading south, saying their village burned."
   },
   {
-    "query": "q53",
-    "memory": "m56",
+    "query": "q82",
+    "memory": "m47",
     "issue": "MISSED-RELEVANT",
     "draft": 0,
     "judge": 1,
-    "judge_reason": "Relevant to comparing tavern quality.",
-    "situation": "A guest asks whether my rival tavern across town is worth visiting instead.",
-    "memory_text": "Travelers keep saying my ale is the best between here and the capital."
+    "judge_reason": "The memory of counterfeit coins could indicate a motive for theft, such as financial gain or an attempt to cover illegal activities.",
+    "situation": "The mayor asks who might have had reason to take his ledger.",
+    "memory_text": "Counterfeit coins have been passing through town; two turned up in my till this week."
   },
   {
-    "query": "q54",
-    "memory": "m2",
+    "query": "q83",
+    "memory": "m62",
     "issue": "GRADE-MISMATCH",
-    "draft": 1,
-    "judge": 2,
-    "judge_reason": "Directly answers the question about road dangers.",
-    "situation": "Someone asks what dangers travelers have reported on the roads lately.",
-    "memory_text": "The blacksmith's daughter Mira warned me the bridge on the north road is washed out."
+    "draft": 2,
+    "judge": 1,
+    "judge_reason": "Recent experience with the miller's household suggests they may have a birth imminent.",
+    "situation": "A midwife asks whether any households need her services soon.",
+    "memory_text": "A midwife was called to the miller's house three nights running."
   },
   {
-    "query": "q54",
-    "memory": "m36",
-    "issue": "MISSED-RELEVANT",
-    "draft": 0,
+    "query": "q85",
+    "memory": "m66",
+    "issue": "GRADE-MISMATCH",
+    "draft": 2,
     "judge": 1,
-    "judge_reason": "Relevant to road safety, but doesn't directly report a danger.",
-    "situation": "Someone asks what dangers travelers have reported on the roads lately.",
-    "memory_text": "A peddler swears the north road is perfectly safe and quick this time of year."
+    "judge_reason": "The memory is relevant to the southern roads, which could help with the traveler's inquiry.",
+    "situation": "A traveler asks whether the southern roads are open and how to handle tolls.",
+    "memory_text": "A peddler is selling maps of the southern trade routes."
   }
 ]
