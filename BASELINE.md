@@ -68,16 +68,19 @@ cd ~/aioos_retrieval_eval && python eval.py
 - **current committed stand-in baseline; compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.**
 - (History: Run 1b n=30 → 0.47, Run 1c n=55 → 0.55.)
 
-### Run 1e — STAND-IN, n=113 (2026-09-17) — ADJUDICATED (current committed baseline)
-- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` · **set:** 88 memories, 113 queries
-- **nDCG@3 = 0.67**  95% CI [0.60, 0.74]  · nDCG@5 = 0.71 · nDCG@10 = 0.75
-- **eval sensitivity = 0.07** (smallest reliably-detectable nDCG regression at n=113; conservative, paired does better)
-- executed chance 0.03 · positive PASS · shuffle 0.02 · **hard-negative leakage 22/110 (~20%)**
-- The batch-3 additions (q86-113) are deliberately HARD: stale-vs-current traps (bridge rebuilt vs washed-out, well
-  cleaned vs sick, rockslide cleared). Leakage rose to ~20% = the traps bite. NOTABLE: the LLM judge itself marked the
-  stale hard negatives as judge=2 (no temporal model) -- the same blindspot the embedder has -- which validates them.
+### Run 1f — STAND-IN, n=127 (2026-09-17) — ADJUDICATED (current committed baseline)
+- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` · **set:** 88 memories, 127 queries
+- **nDCG@3 = 0.68**  95% CI [0.61, 0.74]  · nDCG@5 = 0.72 · nDCG@10 = 0.75
+- **eval sensitivity = 0.06** (smallest reliably-detectable nDCG regression at n=127; conservative, paired does better)
+- executed chance 0.03 · positive PASS · shuffle 0.04 · **hard-negative leakage 29/123 (~24%)**
+- compare_methods n=127: embedder 0.68 > lexical 0.54 > random 0.00; embedder−lexical +0.14 [+0.06, +0.22] RESOLVABLE.
+- Batch-4 (q114-127, hard/medium ONLY, added to tighten the int8-vs-float paired CI): 5 stale-twin traps (west pass
+  cleared vs blocked, well clean vs sick, bridge rebuilt vs washed-out, gate untolled vs new toll, tonic failed vs sold)
+  + 4 topic-matcher traps + 5 primary/supporting mediums. Sensitivity 0.07→0.06; the new traps leak as designed, so
+  they add discriminating power without inflating the score (nDCG steady 0.67→0.68). The LLM judge again marked the
+  stale twins relevant (no temporal model) = validates them; adjudication in memories.json `_status`.
 - labels adjudicated (pair + missed-label audits → Tom ruled). This is the current committed baseline.
-- **compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.** (History: n=30→0.47, n=55→0.55, n=85→0.64.)
+- **compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.** (History: n=30→0.47, n=55→0.55, n=85→0.64, n=113→0.67.)
 
 ### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
 - run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)

@@ -1,6 +1,6 @@
 {
   "_note": "AIOOS NPC memory-retrieval eval. An NPC (a tavern keeper) has memories. Each query is a situation; 'labels' names the memory ids that SHOULD be recalled, each with a relevance GRADE and a written rationale. 'hard_negative' names a topically-close memory that should NOT be retrieved (a control against topic-matching). Ground truth is hand-labeled.",
-  "_status": "ADJUDICATED 2026-09-17 at n=113 (88 memories, 113 queries). Labels drafted by assistant, audited by an independent judge (audit_labels.py) + missed-label audit (audit_missed.py), disagreements ruled on by Tom (ground truth of record). The LLM judge is systematically over-inclusive AND has no temporal model -- it marked the STALE-vs-current hard negatives (bridge washed-out, well sick, rockslide) as judge=2, the same blindspot the embedder has, which validates those traps. Only clear-primary/clear-error calls adopted; loose/stale flags rejected (they are the designed traps). Batch-3 (n86-113) adjudication: q66/m50 earlier; q113/m79 ->1. Earlier history in git.",
+  "_status": "ADJUDICATED 2026-09-17 at n=127 (88 memories, 127 queries). Labels drafted by assistant, audited by an independent judge (audit_labels.py) + missed-label audit (audit_missed.py), disagreements ruled on by Tom (ground truth of record). The LLM judge is systematically over-inclusive AND has no temporal model -- it marked the STALE-vs-current hard negatives (bridge washed-out, well sick, rockslide, toll rule) as relevant, the same blindspot the embedder has, which validates those traps. Only clear calls adopted; loose/stale flags rejected (they are the designed traps). Batch-4 (q114-127, hard/medium only, to tighten the int8-vs-float paired CI) adjudication: q118/m88 2->1 (one-time anecdote, could be wrong remedy or fake batch); q124/m11 added as supporting (refugees from a burned village = possible conflict signal); q126/m33 kept at 1; q116/m36 left unlabeled (dubious peddler claim, not bridge capacity). Batch-3 (n86-113): q66/m50; q113/m79 ->1. Earlier history in git.",
   "_label_schema": {
     "what_is_evaluated": "Given a situation the NPC is in, does the embedder retrieve the memories a thoughtful NPC would actually draw on to respond? APPLICATION target (right memory for a game moment), not academic IR. Deliberately distinct from Dan's K1 gate (nDCG on BEIR).",
     "grades": {
@@ -642,7 +642,7 @@
         }
       },
       "hard_negative": "m28",
-      "hard_negative_why": "m28 is a debt the tavern OWES the cooper, the opposite direction. (m29 dropped to 0: a settled tab is not outstanding \u2014 Tom, 2026-09-16.)"
+      "hard_negative_why": "m28 is a debt the tavern OWES the cooper, the opposite direction. (m29 dropped to 0: a settled tab is not outstanding — Tom, 2026-09-16.)"
     },
     {
       "id": "q12",
@@ -810,7 +810,7 @@
         },
         "m38": {
           "grade": 1,
-          "why": "A fine dagger held as collateral is a valuable item on hand the keeper could act on (though using it carries downstream cost) \u2014 a genuine answer, secondary to the sealed letter (Tom, 2026-09-16)."
+          "why": "A fine dagger held as collateral is a valuable item on hand the keeper could act on (though using it carries downstream cost) — a genuine answer, secondary to the sealed letter (Tom, 2026-09-16)."
         }
       }
     },
@@ -2159,6 +2159,218 @@
       },
       "hard_negative": "m61",
       "hard_negative_why": "m61 (the blacksmith busy with a rush order) shows he is working, but not the safety concern."
+    },
+    {
+      "id": "q114",
+      "text": "A merchant with loaded wagons asks whether the western mountain pass is open to cross.",
+      "difficulty": "hard",
+      "labels": {
+        "m77": {
+          "grade": 2,
+          "why": "Current fact: a courier uses the west pass daily since the rockslide was cleared; directly answers that it is open."
+        }
+      },
+      "hard_negative": "m13",
+      "hard_negative_why": "m13 says a rockslide blocked the western pass; a time-blind matcher grabs it, but it is the STALE state the cleared road supersedes."
+    },
+    {
+      "id": "q115",
+      "text": "A traveler asks whether the village well water is safe to drink now.",
+      "difficulty": "hard",
+      "labels": {
+        "m78": {
+          "grade": 2,
+          "why": "Current fact: the well was cleaned and runs clear and safe again; directly answers the question."
+        }
+      },
+      "hard_negative": "m10",
+      "hard_negative_why": "m10 (well tasted strange, villagers sick) is the same subject but the STALE prior state; a temporal-blind embedder surfaces it as the answer."
+    },
+    {
+      "id": "q116",
+      "text": "A caravan master asks if the north road bridge will bear his heavy carts.",
+      "difficulty": "hard",
+      "labels": {
+        "m76": {
+          "grade": 2,
+          "why": "Current fact: the north bridge was rebuilt last week and the road is open; that is what determines whether carts can cross."
+        }
+      },
+      "hard_negative": "m2",
+      "hard_negative_why": "m2 (Mira warned the north bridge is washed out) is the same subject but STALE; the rebuild supersedes it, yet a matcher grabs it."
+    },
+    {
+      "id": "q117",
+      "text": "A merchant asks how much toll he must pay at the west gate today.",
+      "difficulty": "hard",
+      "labels": {
+        "m65": {
+          "grade": 2,
+          "why": "Current fact: the toll-keeper took ill so the west gate is unmanned and untolled right now; that is the answer for today."
+        }
+      },
+      "hard_negative": "m53",
+      "hard_negative_why": "m53 (baron ordered a new toll at the west gate) is the standing rule and same subject, but STALE for 'today' when no one is collecting."
+    },
+    {
+      "id": "q118",
+      "text": "A sick customer asks whether the fever tonic sold in the market actually works.",
+      "difficulty": "hard",
+      "labels": {
+        "m88": {
+          "grade": 1,
+          "why": "Suggestive but not conclusive: the tonic did nothing for ONE customer -- could be the wrong remedy for that illness, or a fake batch. Best available evidence, but a competent answer hedges rather than declares it worthless."
+        }
+      },
+      "hard_negative": "m20",
+      "hard_negative_why": "m20 (a healer is selling fever tonic by the well) is a strong topic match on 'fever tonic' but only speaks to availability, not whether it works."
+    },
+    {
+      "id": "q119",
+      "text": "A patron asks about the dog that keeps guard at my tavern door at night.",
+      "difficulty": "hard",
+      "labels": {
+        "m60": {
+          "grade": 2,
+          "why": "Names exactly this: a stray dog has started guarding the tavern door every night."
+        }
+      },
+      "hard_negative": "m87",
+      "hard_negative_why": "m87 (a pack of stray dogs roams the alley behind the tavern) matches on 'stray dogs' + 'tavern' but is a different animal in a different place."
+    },
+    {
+      "id": "q120",
+      "text": "A traveler who cannot read asks where he can get a letter written.",
+      "difficulty": "hard",
+      "labels": {
+        "m75": {
+          "grade": 2,
+          "why": "Directly answers: a traveling scribe is offering to write letters for those who cannot read."
+        }
+      },
+      "hard_negative": "m17",
+      "hard_negative_why": "m17 (a noble left a sealed letter with a hawk crest) matches on 'letter' but concerns a specific object, not a letter-writing service."
+    },
+    {
+      "id": "q121",
+      "text": "A worried merchant asks what I know about the counterfeit coins going around town.",
+      "difficulty": "hard",
+      "labels": {
+        "m47": {
+          "grade": 2,
+          "why": "Primary: counterfeit coins have been passing through town and two turned up in my till this week."
+        },
+        "m85": {
+          "grade": 1,
+          "why": "Supporting: a rumor that the mayor took a bribe to ignore the counterfeiting; relevant context, not needed for a competent answer."
+        }
+      },
+      "hard_negative": "m1",
+      "hard_negative_why": "m1 (a stranger paid with a gold royal-seal coin) matches on 'coin' but is a genuine coin, not counterfeit."
+    },
+    {
+      "id": "q122",
+      "text": "The miller's son is pacing before his wedding feast and asks me to steady his nerves.",
+      "difficulty": "medium",
+      "labels": {
+        "m41": {
+          "grade": 2,
+          "why": "Primary: the miller's son is nervous and jumpy about his wedding feast next month."
+        },
+        "m22": {
+          "grade": 1,
+          "why": "Supporting: the wedding feast is booked at the tavern for the miller's son; grounds the reassurance in the actual event."
+        }
+      },
+      "hard_negative": "m44",
+      "hard_negative_why": "m44 (lovers from feuding families meeting in secret) is a romance-topic match but a different couple and situation."
+    },
+    {
+      "id": "q123",
+      "text": "A regular asks when the harvest festival is and what is planned for it.",
+      "difficulty": "medium",
+      "labels": {
+        "m5": {
+          "grade": 2,
+          "why": "Primary: the harvest festival is in three days and the mayor asked for extra ale."
+        },
+        "m24": {
+          "grade": 1,
+          "why": "Supporting: the mayor plans to give a speech in the square on the first day."
+        },
+        "m23": {
+          "grade": 1,
+          "why": "Supporting: traveling musicians arrived early hoping to play at the festival."
+        }
+      }
+    },
+    {
+      "id": "q124",
+      "text": "A frightened traveler asks whether war is coming to the region.",
+      "difficulty": "medium",
+      "labels": {
+        "m32": {
+          "grade": 2,
+          "why": "Primary: a scout reported soldiers massing at the border two valleys east."
+        },
+        "m55": {
+          "grade": 1,
+          "why": "Supporting: the neighboring lord died and his young heir is untested; relevant to instability, not decisive alone."
+        },
+        "m11": {
+          "grade": 1,
+          "why": "Corroborating: refugees fleeing a burned village heading south is evidence of conflict nearby (one possible cause among others)."
+        }
+      },
+      "hard_negative": "m18",
+      "hard_negative_why": "m18 (a soldier muttered the prince travels in disguise) is a crown/soldier topic match but not about war coming."
+    },
+    {
+      "id": "q125",
+      "text": "My grain supplier raised prices again and a patron asks why bread and ale keep getting dearer.",
+      "difficulty": "medium",
+      "labels": {
+        "m12": {
+          "grade": 2,
+          "why": "Primary: my supplier raised the price of grain again, the third increase this season."
+        },
+        "m34": {
+          "grade": 1,
+          "why": "Supporting: the harvest failed in two towns to the west, which explains the price pressure."
+        }
+      },
+      "hard_negative": "m86",
+      "hard_negative_why": "m86 (the miller owes the tavern for a season of ale) is a money/grain-adjacent match but about an unpaid debt, not prices rising."
+    },
+    {
+      "id": "q126",
+      "text": "A family fleeing a burned village asks whether others like them have come through and if there is work.",
+      "difficulty": "medium",
+      "labels": {
+        "m11": {
+          "grade": 2,
+          "why": "Primary: a caravan of refugees passed through heading south, saying their village burned."
+        },
+        "m33": {
+          "grade": 1,
+          "why": "Supporting: a family arrived from a burned village asking whether there is work in town."
+        }
+      },
+      "hard_negative": "m64",
+      "hard_negative_why": "m64 (pilgrims passing through to a shrine) matches on 'travelers passing through' but is unrelated to refugees or work."
+    },
+    {
+      "id": "q127",
+      "text": "A carter asks whether the low south road is at risk of flooding before he sets out.",
+      "difficulty": "hard",
+      "labels": {
+        "m51": {
+          "grade": 2,
+          "why": "Primary: the river is running dangerously high and could flood the low south road."
+        }
+      },
+      "hard_negative": "m14",
+      "hard_negative_why": "m14 (the south-road ferry is out because the ferryman is ill) matches on 'south road' passability but is a different cause and not the flooding risk asked about."
     }
   ],
   "positive_control": {

@@ -1,6 +1,6 @@
 # AIOOS Retrieval Eval
 
-An honest benchmark (113 situations) for one question: **when a game NPC is in a situation, does the embedder retrieve the memories it should actually recall to respond well?**
+An honest benchmark (127 situations) for one question: **when a game NPC is in a situation, does the embedder retrieve the memories it should actually recall to respond well?**
 
 This is an *application-facing* retrieval eval, not an academic IR benchmark. Academic benchmarks (BEIR and friends) ask "is this embedder good at ranking scientific abstracts." That is a different question from "does the tavern keeper remember the washed-out bridge when a traveler asks about the north road." This measures the second one, because that is what a living-NPC system actually needs.
 
@@ -52,7 +52,7 @@ Same stand-in embedder (`all-MiniLM-L6-v2`), two versions of the benchmark:
 | Set | nDCG@3 | 95% CI |
 |---|---|---|
 | toy (12 memories, 6 queries) | 0.84 | [0.63, 1.00] |
-| realistic (88 memories, 113 queries, hard negatives) | **0.67** | [0.60, 0.74] |
+| realistic (88 memories, 127 queries, hard negatives) | **0.68** | [0.61, 0.74] |
 
 The toy set scored far higher, and that was the inflation: a tiny, easy corpus flatters retrieval because there is nothing to confuse the embedder. The realistic set with topical hard negatives, including stale-vs-current traps (a bridge that was washed out but has since been rebuilt, a well that was contaminated but has since been cleaned), is where retrieval quality actually gets tested. Hard-negative leakage on that set is ~20%. A benchmark that always reports high numbers is not measuring anything.
 
@@ -63,12 +63,12 @@ strategies through the same benchmark:
 
 | method | nDCG@3 | 95% CI |
 |---|---|---|
-| embedder (semantic) | 0.67 | [0.60, 0.74] |
-| lexical (word overlap, no embeddings) | 0.51 | [0.43, 0.59] |
-| random | 0.00 | [0.00, 0.00] |
+| embedder (semantic) | 0.68 | [0.61, 0.74] |
+| lexical (word overlap, no embeddings) | 0.54 | [0.46, 0.61] |
+| random | 0.00 | [0.00, 0.01] |
 
 All three gaps are **resolvable** (the paired CI on the per-query difference excludes 0). The
-embedder resolvably beats keyword matching (+0.16 [+0.07, +0.24]), the analogue of an intrinsic
+embedder resolvably beats keyword matching (+0.14 [+0.06, +0.22]), the analogue of an intrinsic
 gate's "beat BM25" floor. And the per-query breakdown shows *what breaks without good retrieval*:
 asked "is anyone a threat to me," keyword matching returns "a family arrived from a burned village"
 while the embedder returns the threatening note. The eval separates the methods and names the
@@ -77,7 +77,7 @@ failures, which is the whole reason to run it.
 ## Sensitivity (how small a regression it can catch)
 
 The eval reports its own sensitivity: the smallest embedder-quality difference it can reliably
-detect at the current sample size. At 113 queries that is about **0.07 nDCG** (the confidence-interval
+detect at the current sample size. At 127 queries that is about **0.06 nDCG** (the confidence-interval
 half-width on the deciding metric). A regression larger than that is caught; a smaller one needs more
 queries (sensitivity tightens with the square root of n). This is a deliberately conservative bound,
 a *paired* comparison of two similar embedders (e.g. int8 vs float of the same model) resolves finer,
@@ -102,7 +102,7 @@ Comparing two embedders honestly: run each through `per_query_scores(...)['nDCG@
 ## Files
 
 - `eval.py` — the benchmark: embed, rank, score, controls, CIs, sensitivity.
-- `memories.json` — the corpus (88 memories), queries (113), graded+rationaled labels, hard negatives.
+- `memories.json` — the corpus (88 memories), queries (127), graded+rationaled labels, hard negatives.
 - `audit_labels.py` — the independent-judge audit of the drafted labels (needs an `OPENROUTER_API_KEY`).
 - `audit_missed.py` — the missed-label audit (re-grades retrieved-but-unlabeled memories).
 - `compare_methods.py` — the discriminating-power test (embedder vs lexical vs random).
