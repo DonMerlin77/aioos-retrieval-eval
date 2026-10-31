@@ -44,7 +44,7 @@ def main():
     print(f"  PAIRED  {a} - {b}  =  {d:+.3f}   95% CI [{lo:+.3f}, {hi:+.3f}]   (n={n} shared queries)")
     if not resolved:
         print(f"  -> TIED: the CI straddles 0, so the two are NOT resolvably different on this {n}-query eval.")
-        print(f"     (honest read -- a bigger/harder query set is what would resolve them; same lesson as K1.)")
+        print(f"     (honest read -- a bigger/harder query set is what would resolve them; same lesson as any small benchmark.)")
     else:
         winner = a if d > 0 else b
         print(f"  -> RESOLVABLE: {winner} is better here (CI clears 0).")

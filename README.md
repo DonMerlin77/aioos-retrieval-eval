@@ -119,7 +119,10 @@ These are stated plainly because a benchmark that hides its limits cannot be tru
 
 ## Status
 
-Stand-in embedder for now. Built to swap in a production embedder and produce a clean before/after read (including whether int8 quantization costs retrieval quality) with the controls still holding.
+The default embedder is the MiniLM stand-in (nDCG@3 0.677). The production model, Qwen3-Embedding-0.6B, scores
+0.752 on the same queries, a resolvable improvement (paired difference +0.075, 95% CI [+0.024, +0.128], both positive
+controls passing; `python compare_embedders.py`, details in `BASELINE.md`). Still open: whether the engine's int8
+integer path keeps that quality (`eval_sslm.py`).
 
 ## License
 

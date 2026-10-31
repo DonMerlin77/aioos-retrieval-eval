@@ -18,7 +18,7 @@ cd ~/aioos_retrieval_eval && python eval.py
 
 ### Run 1 — STAND-IN baseline (2026-09-16, graded-labels + CI upgrade)
 - **embedder:** `sentence-transformers/all-MiniLM-L6-v2` (stand-in for the production Qwen3-0.6B-Embedding model)
-- **nDCG@3 = 0.84**  95% CI [0.63, 1.00]  ← DECIDING metric (graded gain, matches K1's convention)
+- **nDCG@3 = 0.84**  95% CI [0.63, 1.00]  ← DECIDING metric (graded gain, matches the engine gate's convention)
 - recall@3 = 0.92  95% CI [0.75, 1.00]
 - hit@3 = 1.00  95% CI [1.00, 1.00]
 - MRR = 0.92  95% CI [0.75, 1.00]
@@ -82,9 +82,10 @@ cd ~/aioos_retrieval_eval && python eval.py
 - labels adjudicated (pair + missed-label audits → Tom ruled). This is the current committed baseline.
 - **compare 1.5.0 against it via `paired_diff_ci` on per-query nDCG@3.** (History: n=30→0.47, n=55→0.55, n=85→0.64, n=113→0.67.)
 
-### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
-- run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)
-- questions to answer: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in
-- the comparison is only honest through `paired_diff_ci(stand_in_perq, real_perq)` on per-query nDCG@3:
-  if that CI straddles 0, they are NOT resolvably different — report a tie, do not claim a winner
-- both controls (positive + shuffle) must still pass on the real embedder or the comparison is void
+### Run 2 — REAL embedder model (Qwen3-Embedding-0.6B, float, via sentence-transformers) — DONE 2026-10-31
+`python compare_embedders.py` on the same 127 queries / 88 memories, k=3 (chance floor nDCG@3 0.026):
+- MiniLM (stand-in): nDCG@3 **0.677**, 95% CI [0.611, 0.741], positive control PASS
+- Qwen3-0.6B: nDCG@3 **0.752**, 95% CI [0.693, 0.807], positive control PASS
+- **paired difference +0.075, 95% CI [+0.024, +0.128] (n=127): resolvable -- the real model is better on this eval.**
+- Still open: the same model through the engine's int8 integer path (`eval_sslm.py`) -- does quantization cost
+  retrieval quality? Not reported here until it's rerun and recorded.

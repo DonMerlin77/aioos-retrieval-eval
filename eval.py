@@ -2,12 +2,12 @@
 AIOOS retrieval-quality eval. Measures whether the embedder + nearest-neighbor search returns the
 SEMANTICALLY RIGHT memories for a situation. Stand-in embedder now (all-MiniLM); swap in the production embedder later
 via AIOOS_EMBEDDER=... (see BASELINE.md). This is the APPLICATION-facing complement to the engine's own retrieval gate:
-K1 asks "is the embedder good on BEIR benchmarks," this asks "does it recall the right memory for a
+An intrinsic gate asks "is the embedder good on BEIR benchmarks," this asks "does it recall the right memory for a
 game moment." Labels are graded (2=primary, 1=supporting) with a written rationale per pair in
 memories.json, so the eval documents its own definition of correct.
 
 Metrics:
-  nDCG@k    : the DECIDING metric (graded gain, log2 discount) -- matches K1's convention so the two
+  nDCG@k    : the DECIDING metric (graded gain, log2 discount) -- matches the engine gate's convention so the two
               evals speak the same language
   recall@k  : of the memories that SHOULD come back, how many landed in the top k (binary, grade>0)
   hit@k     : did at least one right memory land in the top k
@@ -96,7 +96,7 @@ def ndcg_only(queries, ranked_by_q, k):
 
 
 def executed_chance(queries, mem_ids, k=K, trials=1000, seed=SEED):
-    """The true chance floor: mean nDCG@k of uniformly RANDOM rankings (design mirrors K1's
+    """The true chance floor: mean nDCG@k of uniformly RANDOM rankings (design mirrors the engine gate's
     executed_chance_level). Complements the shuffle control -- shuffle scrambles the labels,
     this randomizes the ranking; a real metric must sit well above both."""
     rng = np.random.default_rng(seed)
@@ -123,7 +123,7 @@ def paired_diff_ci(per_query_a, per_query_b, n_boot=N_BOOT, seed=SEED):
     """The noise floor for a two-model comparison: 95% CI on the per-query difference a - b (same
     queries, same labels, two rankings). If the CI straddles 0, the two embedders are NOT resolvably
     different on this eval -- report them as tied, do not claim a winner. This is the guard that keeps
-    a stand-in-vs-real read from turning a 0.92-vs-0.94 into a fake win. Mirrors K1's paired resolving
+    a stand-in-vs-real read from turning a 0.92-vs-0.94 into a fake win. Mirrors the engine gate's paired resolving
     power in spirit (a paired CI, not either model's marginal spread)."""
     shared = sorted(set(per_query_a) & set(per_query_b))
     diffs = np.array([per_query_a[q] - per_query_b[q] for q in shared], dtype=np.float64)

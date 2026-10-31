@@ -6,7 +6,7 @@ strategies through the SAME benchmark and asks whether the eval resolvably ranks
 
   embedder : the real thing (semantic nearest-neighbor)
   lexical  : word-overlap ranking -- "what you get from keyword matching, no embeddings" (a floor,
-             the analogue of K1's BM25 F2 floor)
+             the analogue of an intrinsic gate's BM25 floor)
   random   : shuffled ranking -- the null
 
 If the eval is worth anything: embedder > lexical > random, each gap outside the paired-difference
