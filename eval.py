@@ -1,7 +1,7 @@
 """
 AIOOS retrieval-quality eval. Measures whether the embedder + nearest-neighbor search returns the
-SEMANTICALLY RIGHT memories for a situation. Stand-in embedder now (all-MiniLM); swap in Dan's later
-via AIOOS_EMBEDDER=... (see BASELINE.md). This is the APPLICATION-facing complement to Dan's K1 gate:
+SEMANTICALLY RIGHT memories for a situation. Stand-in embedder now (all-MiniLM); swap in the production embedder later
+via AIOOS_EMBEDDER=... (see BASELINE.md). This is the APPLICATION-facing complement to the engine's own retrieval gate:
 K1 asks "is the embedder good on BEIR benchmarks," this asks "does it recall the right memory for a
 game moment." Labels are graded (2=primary, 1=supporting) with a written rationale per pair in
 memories.json, so the eval documents its own definition of correct.
@@ -27,7 +27,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 HERE = Path(__file__).parent
-# stand-in default; point at Dan's embedder with AIOOS_EMBEDDER=... (no file edit needed). See BASELINE.md.
+# stand-in default; point at the production embedder with AIOOS_EMBEDDER=... (no file edit needed). See BASELINE.md.
 MODEL = os.getenv("AIOOS_EMBEDDER", "sentence-transformers/all-MiniLM-L6-v2")
 K = 3
 N_BOOT = 10000
@@ -151,7 +151,7 @@ GOAL = (
 
 LEGEND = {
     "nDCG@%d" % K: "DECIDING metric. Rewards putting the most-relevant memory (grade 2) above a\n"
-                   "               merely-supporting one (grade 1), in the top %d. Same convention as Dan's K1\n"
+                   "               merely-supporting one (grade 1), in the top %d. Same convention as the engine's retrieval\n"
                    "               gate, so the two evals compare like-for-like. This is the number to trust." % K,
     "recall@%d" % K: "diagnostic. Of the memories that SHOULD come back, how many made the top %d." % K,
     "hit@%d" % K: "diagnostic. Did at least one right memory make the top %d (did we recall ANYTHING useful)." % K,

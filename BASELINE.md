@@ -1,6 +1,6 @@
 # AIOOS Retrieval Eval — Baseline Ledger
 
-Frozen numbers to compare against when SuperSLM 1.5.0 + Dan's real embedder drop.
+Frozen numbers to compare against when SuperSLM 1.5.0 and the production embedder land.
 When the real embedder is in: change one line (`MODEL` in `eval.py`), rerun, add a new row below. Do not overwrite the stand-in row.
 
 ## How to reproduce (one command)
@@ -17,7 +17,7 @@ cd ~/aioos_retrieval_eval && python eval.py
 ## Runs
 
 ### Run 1 — STAND-IN baseline (2026-09-16, graded-labels + CI upgrade)
-- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` (stand-in for Dan's Qwen3-0.6B-Embedding)
+- **embedder:** `sentence-transformers/all-MiniLM-L6-v2` (stand-in for the production Qwen3-0.6B-Embedding model)
 - **nDCG@3 = 0.84**  95% CI [0.63, 1.00]  ← DECIDING metric (graded gain, matches K1's convention)
 - recall@3 = 0.92  95% CI [0.75, 1.00]
 - hit@3 = 1.00  95% CI [1.00, 1.00]
@@ -84,7 +84,7 @@ cd ~/aioos_retrieval_eval && python eval.py
 
 ### Run 2 — REAL embedder (SuperSLM 1.5.0 + Qwen3-0.6B-Embedding) — PENDING
 - run with `AIOOS_EMBEDDER=<his-model> python eval.py`, paste numbers here (no file edit)
-- read to report to Dan: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in
+- questions to answer: does int8 hurt retrieval vs float, and does the real embedder hold vs the stand-in
 - the comparison is only honest through `paired_diff_ci(stand_in_perq, real_perq)` on per-query nDCG@3:
   if that CI straddles 0, they are NOT resolvably different — report a tie, do not claim a winner
 - both controls (positive + shuffle) must still pass on the real embedder or the comparison is void
